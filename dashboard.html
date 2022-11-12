@@ -16,17 +16,17 @@
 
       <style>
         li{
-            margin:0 10px;
+            margin-left:10px;
         }
     </style>
         
     </head>
     <body>
 
-      <!-- Header-->
+        <!-- Header-->
 
 
-      <div class="colored-section">
+      <div class="colored-section" style="max-width: 1530px;">
         <nav class="navbar navbar-expand-lg">
               <a class="navbar-brand" href="#">Hello, user</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,106 +39,127 @@
                     <a class="nav-link" href="#"><img class="profile-image" src="images/Profile.png"></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Join</a>
+                    <!-- Button trigger modal -->
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Join</a>
                   </li>
-                  <li class="nav-item invisible">
-                    <a class="nav-link" href="#">Join</a>
-                  </li>
+                 
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Profile
                     </a>
+                    
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#red">Edit Profile</a></li>
-                      <li><a class="dropdown-item" href="#coral">Settings</a></li>
-                      <li><a class="dropdown-item" href="#cyan">Log Out</a></li>
+                      <li><a class="dropdown-item" href="">Edit Profile</a></li>
+                      <li><a class="dropdown-item" href="">Settings</a></li>
+                      <li><a class="dropdown-item" href="index.html">Log Out</a></li>
                     </ul>
+                  </li>
+                  <li class="nav-item invisible">
+                    <a class="nav-link" href="#">Join</a>
                   </li>
                 </ul>
               </div>
           </nav>
         </div>
 
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Enter code to join a project</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="text" name="projectCode" placeholder="eg. XXXXXX">
+                </div>
+                <div class="modal-footer">
+                  <a href="" class="btn btn-danger" >OK</a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+
         <!-- List of projects-->
         <section class="white-section">
-          <div class="row project-row">
-            <div class="col-lg-4 col-md-6 project-box">
-              <h1>ML Project</h1>
-              <p>Date: 7834 3247823749</p>
-
-              <p>
-                <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Link with href
-                </a>
-                
-              </p>
-              <div class="collapse" id="collapseExample1">
-                <div class="card card-body">
-                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                  <a class="link-button btn btn-danger" href="">View details</a>
+            <div class="row project-row"  style="max-width: 1500px;">
+              <div class="col-lg-4 col-md-6 project-box">
+                <h1>Email Spam-Filtering System</h1>
+                <p>Tags: ML</p>
+                <p>
+                  <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Show more
+                  </a>  
+                </p>
+                <div class="collapse" id="collapseExample1">
+                  <div class="card card-body">
+  
+  
+                    Mining text is one of the popular computation techniques widely applied in applications like text summarization, topic classification, machine translation, 
+                    sentiment analysis, etc. Modern cybersecurity systems are utilizing machine learning methods a lot.
+                     Spam filtering also leverages text mining and document classification to segregate legitimate mails and spam emails.
+                    <a class="link-button btn btn-danger" href="">View details</a>
+                  </div>
                 </div>
               </div>
-
-
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 project-box">
-              <h1>ML Project</h1>
-              <p>Date: 7834 3247823749</p>
-
-              <p>
-                <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Link with href
-                </a>
-                
-              </p>
-              <div class="collapse" id="collapseExample2">
-                <div class="card card-body">
-                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                  <a class="link-button btn btn-danger" href="">View details</a>
+  
+  
+  
+              <div class="col-lg-4 col-md-6 project-box">
+                <h1>Recommendation System</h1>
+                <p>Tags: ML, AI, DL</p>
+                <p>
+                  <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Show more
+                  </a>                
+                </p>
+                <div class="collapse" id="collapseExample2">
+                  <div class="card card-body">
+                    Have you ever seen movies or web series on online streaming platforms? Once you watch one or two of them, 
+                    you will notice that apps like Netflix and Amazon Prime recommend new web series and movies. 
+                    It is because these apps render machine learning models that try to understand the customer's taste.  
+                    All modern apps come with a recommendation engine that suggests users for more engagement.
+                    <a class="link-button btn btn-danger" href="">View details</a>
+                  </div>
                 </div>
               </div>
+              
+              <div class="col-lg-4 col-md-6 project-box">
+                <h1>Speech Emotion Recognizer</h1>
+                <p>Tags: ML, DL</p>
+                <p>
+                  <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Show more
+                  </a>        
+                </p>
+                <div class="collapse" id="collapseExample3">
+                  <div class="card card-body">
+                    It is another advanced-level ML project where you have to deal mostly with audio data.
+                     Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                     To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                     <a class="link-button btn btn-danger" href="">View details</a>
 
-
-
-            </div>
-            
-            <div class="col-lg-4 col-md-6 project-box">
-              <h1>ML Project</h1>
-              <p>Date: 7834 3247823749</p>
-
-              <p>
-                <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Link with href
-                </a>
-                
-              </p>
-              <div class="collapse" id="collapseExample3">
-                <div class="card card-body">
-                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                  <a class="link-button btn btn-danger" href="">View details</a>
-                
+                    </div>
                 </div>
               </div>
+           </div>
+
+          </section>
 
 
 
-            </div>
+          
 
+          
+          <!-- New project-->
 
-
-
-
-
-          </div>
-        </section>
-
-        <section class="">
-          <div class="row">
-            <div class="card mb-3 colored-section" style="width:100%;">
+        <section>
+          <div class="row" style="max-width: 1530px;">
+            <div class="card mb-3 colored-section">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src="images/newproject.jpg" class="img-fluid rounded-start" alt="...">
@@ -156,5 +177,17 @@
         </section>
 
 
-    </body>
-</html>
+
+        <!-- Footer -->
+
+  <footer class="white-section" id="footer">
+    <div class="container-fluid">
+      <i class="social-icon pink fab fa-facebook-f"></i>
+      <i class="social-icon pink fab fa-twitter"></i>
+      <i class="social-icon pink fab fa-instagram"></i>
+      <i class="social-icon pink fas fa-envelope"></i>
+      <p class="pink">© Copyright 2022 ProjectValued</p>
+    </div>
+  </footer>  
+
+    </body></html>
