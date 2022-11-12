@@ -2,6 +2,7 @@
 body {
   font-family: "Montserrat";
   text-align: center;
+  margin: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,9 +16,17 @@ p {
 .profile-image{
   width: 5%;
   position: absolute;
-  right: 10rem;
+  right: 3rem;
   top:1rem
 }
+
+.pink{
+  color: #ff4c68;
+}
+
+
+
+
 
 @media all and (max-width: 768px) {
 
@@ -36,10 +45,15 @@ p {
 
 .project-box{
 
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
 
+}
+div{
+  margin:0;
+  padding: 0;
 }
 
 .link-button{
@@ -257,7 +271,13 @@ p {
 }
 
 
-#popup{
-
-  background-color: #ef8172;
+input{
+  height: 2rem;
+  width:75%;
+}
+.header{
+  background-color: #ff4c68;
+  margin: auto;
+  padding: 0%;
+  width: auto;
 }
