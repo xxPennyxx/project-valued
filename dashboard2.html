@@ -34,26 +34,25 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
-      <img src="images/Profile.png" class="w3-circle " style="width:46px">
+      <img src="images/Profile.png" class="w3-circle " style="width:70%">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>User</strong></span><br>
+      <h3>Welcome, <h3 style="font-weight:700">User</h3></h3><br>
      
     </div>
   </div>
-  <hr>
+  
   <div class="w3-container">
     <h2>Dashboard</h2>
   </div>
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-calendar"></i>  Calendar</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  E-commerce</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope"></i>  Mailbox</a>
+   <!-- <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-calendar"></i>  Calendar</a>-->
+   <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope"></i>  Mailbox</a>-->
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
 
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  My Profile</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  Edit Profile</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
 
@@ -70,55 +69,23 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h2> View Status</h2>
+    <h1> Dashboard</h1>
   </header>
 
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>52</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Messages</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa w3-xxxlarge fa-check"></i></div>
-        <div class="w3-right">
-          <h3>99</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Tasks</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>23</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Projects</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>50</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Collaborators</h4>
-      </div>
-    </div>
-  </div>
-
+  
+    
+    
   <div class="w3-panel">
-    <div class="w3-row-padding " style="margin:0 -16px">
-      <div class="w3-third colored-section" style="padding: 2rem">
+      
+      
+
+      <div class="w3-half" style="width:50%; margin:auto; padding: 2rem; background-color:rgb(255, 255, 142)">
+        <h1 id="day"></h1>
+        <h1 style="font-size:4rem; color:darkgreen" id="today"></h1>
+          <h1 style="font-size:2.5rem;"  id="time"></h1>  
+      </div> 
+
+      <div class="w3-half colored-section" style="width:50%; margin:auto; padding: 2rem">
         <h3>Today's progress</h3>
         
           <div class="progress" style="height: 5rem;">
@@ -126,49 +93,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
           </div><br>
 
           <a class="btn btn-success w3-xlarge">Generate report</a>
-      </div>
-      <div class="w3-twothird">
-        <h2>Tasks</h2>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-            <td>Align Engine Output</td>
-            <td><i>25%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-            <td>Calibrate Distributor</td>
-            <td><i>15%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-            <td>Chart Course</td>
-            <td><i>17%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-            <td>Fuel Engines</td>
-            <td><i>25%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-            <td>Check transactions.</td>
-            <td><i>28%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-            <td>Fix Wires</td>
-            <td><i>35%</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-            <td>Swipe Card</td>
-            <td><i>39%</i></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+      </div> 
+
   </div>
+
+
+
   <hr>
 
 
@@ -180,7 +110,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         <span class="w3-xlarge">Voice Recognition</span><br>
         <span class="w3-large">Course code: 19CSE305</span>
         <br>
-        
+        <div class="w3-grey" style="width:50%; margin:auto;">
+          <div class="w3-container w3-center w3-padding w3-green" style="width:25%">25%</div>
+        </div>
         <br>
         <p>
           <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -189,10 +121,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
           
         </p>
         <div class="collapse" id="collapseExample1">
-          <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            <a class="btn btn-success" href=""> Visit project </a>
-          
+          <div class="card card-body" style="width:75%; margin:auto;">
+            It is another advanced-level ML project where you have to deal mostly with audio data.
+            Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+            To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+            <br> <br> <a class="btn btn-success" style="width:40%; margin:auto;" href=""> Visit project </a>
+          <br>
           </div>
         </div>
 
@@ -204,16 +138,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         <span class="w3-xlarge">Email Spam Recognition</span><br>
         <span class="w3-large">Course code: 19CSE305</span>
         <br>
+        <div class="w3-grey" style="margin:auto; width:50%">
+          <div class="w3-container w3-center w3-padding w3-orange" style="width:50%; ">50%</div>
+        </div><br>
         <p>
-          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <a  class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
             View details
           </a>
           
         </p>
         <div class="collapse" id="collapseExample2">
-          <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            <a class="btn btn-success" href=""> Visit project </a>
+          <div class="card card-body" style="width:75%; margin:auto;">
+            Mining text is one of the popular computation techniques widely applied in applications like text summarization, topic classification, machine translation, 
+                    sentiment analysis, etc. Modern cybersecurity systems are utilizing machine learning methods a lot.
+                     Spam filtering also leverages text mining and document classification to segregate legitimate mails and spam emails. <br>
+            <br>
+                     <a class="btn btn-success"  style="width:40%; margin:auto;" href=""> Visit project </a>
           
           </div>
         </div>
@@ -223,17 +163,24 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         <span class="w3-xlarge">Recommendation system</span><br>
         <span class="w3-large">Course code: 19CSE305</span>
         <br>
+        <div class="w3-grey" style="margin:auto; width:50%">
+          <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
+        </div><br>
         <p>
           <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
             View details
           </a>
           
         </p>
-        <div class="collapse" id="collapseExample3">
-          <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            <a class="btn btn-success" href=""> Visit project </a>
-          
+        <div class="collapse" id="collapseExample3" >
+          <div class="card card-body" style="width:75%; margin:auto;">
+            Have you ever seen movies or web series on online streaming platforms? Once you watch one or two of them, 
+            you will notice that apps like Netflix and Amazon Prime recommend new web series and movies. 
+            It is because these apps render machine learning models that try to understand the customer's taste.  
+            All modern apps come with a recommendation engine that suggests users for more engagement.   <br> <br>
+            
+            <a class="btn btn-success" style="width:40%; margin:auto;" href=""> Visit project </a>
+          <br>
           </div>
         </div>
       </li>
@@ -252,73 +199,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         </p>
         
       </li>
-
-
-
-
-
-
-
     </ul>
   </div>
 
-<br><br>
-
-  <div class="w3-container">
-    <h2>Project Stats</h2>
-    <h4>Voice Recognition</h4>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
-    </div>
-
-    <h4>Recommendation System</h4>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
-    </div>
-
-    <h4>Email Spam filtering System</h4>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
-    </div>
-  </div>
-  <hr>
-
-  
   <hr>
   
-  <hr>
+
   
   
-  <div class="w3-container">
-    <h5>Countries</h5>
-    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      <tr>
-        <td>United States</td>
-        <td>65%</td>
-      </tr>
-      <tr>
-        <td>UK</td>
-        <td>15.7%</td>
-      </tr>
-      <tr>
-        <td>Russia</td>
-        <td>5.6%</td>
-      </tr>
-      <tr>
-        <td>Spain</td>
-        <td>2.1%</td>
-      </tr>
-      <tr>
-        <td>India</td>
-        <td>1.9%</td>
-      </tr>
-      <tr>
-        <td>France</td>
-        <td>1.5%</td>
-      </tr>
-    </table><br>
-    <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
-  </div>
 
     
   <!-- Footer -->
@@ -328,7 +216,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         <i class="social-icon  fab fa-twitter"></i>
         <i class="social-icon  fab fa-instagram"></i>
         <i class="social-icon  fas fa-envelope"></i>
-        <p>© Copyright 2022 ProjectValued</p>
+        <p style="color:white; font-size:1.1rem">© Copyright 2022 ProjectValued</p>
       </div>
       </footer>  
 
@@ -358,6 +246,31 @@ function close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
 }
+
+function time(){
+    var d = new Date();
+    var s = d.getSeconds();
+    var m = d.getMinutes();
+    var h = d.getHours();
+    var date = d.getDate();
+    var day=d.getDay();
+var month = d.getMonth() + 1;
+var  year = d.getFullYear();
+
+days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+
+document.getElementById("day").innerHTML= days[day];
+
+    document.getElementById("time").innerHTML= ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+    document.getElementById("today").innerHTML= date+"."+month+"."+year;
+
+}
+
+setInterval(time,1000);
+
+
+
 </script>
 
 </body>
