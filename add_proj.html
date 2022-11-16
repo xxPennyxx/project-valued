@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tasklist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="styles1.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
+*{
+    font-size: 1.25rem;
+}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top colored-section w3-large" style="z-index:4; background-color: #ff4c68; color: white;">
+  <a class="w3-bar-item w3-left">ProjectValued</a>
+  
+  <span class="w3-bar-item w3-right "> Search </span>
+</div>
+
+
+
+ 
+    <div style="backdrop-filter: blur(8px);; background-color:#f5f6fa;margin: 5%;">
+        <div class="card h-100" >
+            <form method="POST" name="proj">
+                <div class="card-body" >
+                    <div >
+                        <h6 class="mb-2 text-primary">Add Project</h6>
+                    </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="fullName">Project Name*</label>
+                            <input type="text" class="form-control" id="projName" name="projName" placeholder="Enter project name">
+                        </div>
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="website">Project Description*</label>
+                          <input type="text" class="form-control" id="Description" name="Description" placeholder="Details about the project"
+                              style="height:100px">
+                      </div>     
+                  </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="technology">Technology to be used</label>
+                            <input type="text" class="form-control" id="tech" name="tech" placeholder="Enter technology to be used">
+                        </div>      
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="date">Deadline*</label>
+                              <input type="date" class="form-control" id="myDate" name="date"  placeholder="enter the deadline"required>
+                      </div>
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="mentor name">Mentor name</label>
+                          <input type="text" class="form-control" id="mentor" name="mentor" placeholder="Enter mentor name">
+                      </div>      
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="mentor name">Course Code</label>
+                          <input type="text" class="form-control" id="course" name="course" placeholder="Enter Course Code">
+                      </div>      
+                    </div>
+                      
+                    <div class="row gutters">
+                        <div >
+                        </div>
+                        <div class="row gutters">
+                            <div >
+                                <div class="text-right">
+                                    <a href="projlist.html" class="btn btn-secondary" role="button">Cancel</a>
+                                    <button type="button" onclick="return validation()" class="btn btn-primary"> submit </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+    
+  <!-- Footer -->
+    <footer  id="footer" style="text-align: center;">
+      <div >
+        <br>
+        <i class="social-icon  fab fa-facebook-f"></i>
+        <i class="social-icon  fab fa-twitter"></i>
+        <i class="social-icon  fab fa-instagram"></i>
+        <i class="social-icon  fas fa-envelope"></i>
+        <p>© Copyright 2022 ProjectValued</p>
+        <br>
+      </div>
+      </footer>  
+
+  <!-- End page content -->
+</div>
+
+<script>
+
+
+
+
+
+function validation(){
+    var proj_name= document.proj.projName.value;
+    var tec=document.proj.tech.value;
+    var men=document.proj.mentor.value;
+    var des=document.proj.Description.value;
+    var cour=document.proj.course.value;
+    var dat=document.proj.date.value
+    if(proj_name==""){
+        alert("Please enter project name");
+        return false;
+    }
+    if(des==""){
+        alert("Please enter description");
+        return false;
+    } 
+    if(tec==""){
+        alert("Please enter Technology to be used");
+        return false;
+    }
+
+    if(dat==""){
+        alert("Please enter Deadline");
+        return false;
+    }
+
+
+    if(men==""){
+        alert("Please enter Mentor name");
+        return false;
+    }
+    if(cour==""){
+        alert("Please enter course name");
+        return false;
+    }
+    window.location.href = "projlist.html";  
+    return true;
+    
+  }
+</script>
+
+</body>
+</html>
