@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link rel="stylesheet" href="styles1.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
+*{
+    font-size: 1.25rem;
+}
+
+</style>
+</head>
+<body class="w3-light-grey">
+    <!-- Top container -->
+    <div class="w3-bar w3-top colored-section w3-large" style="z-index:4; background-color: #ff4c68;">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <span class="w3-bar-item w3-right"> Search </span>
+      </div>
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        <img src="images/Profile.png" class="w3-circle " style="width:46px">
+      </div>
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome, <strong>User</strong></span><br>
+       
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container">
+      <h2>Dashboard</h2>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-calendar"></i>  Calendar</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  E-commerce</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope"></i>  Mailbox</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
+  
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  My Profile</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+  
+  
+    </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- split -->
+  <div class="w3-panel">
+    <div class="w3-row-padding " style="margin:0 -16px">
+      <div class="w3-third colored-section" style="padding: 2rem">
+        <!--tasks progress -->
+        <div class="flex-wrapper" style="margin-top: 10px;">
+          <div class="prog"><b>TASK PROGRESS</b></div>
+          <div class="single-chart">
+            <svg viewBox="0 0 36 36" class="circular-chart blue">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <path class="circle"
+                stroke-dasharray="90, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <text x="18" y="20.35" class="percentage">90%</text>
+            </svg>
+          </div>
+        </div>
+            <!--task table-->
+        <table class="w3-table w3-striped w3-white">
+                <tr>  
+                  <td>tasks completed</td>
+                  <td><i>20</i></td>
+                </tr>
+                <tr>
+                  <td>tasks incompleted</td>
+                  <td><i>5</i></td>
+                </tr>
+                <tr>
+                  <td>tasks initiated</td>
+                  <td><i>4</i></td>
+                </tr>
+        </table>
+              <hr class="hr">
+        <table class="w3-table w3-striped ">
+            <tr>
+              <td colspan="3"><h2 style="text-align: center; margin-left: 0%; margin-right: 0%;" class=" w3-blue"><b><a href="#" style="text-decoration: none;">CHAT BOX</a></b></h2></td>
+            </tr>
+            <tr class="w3-white">
+              <td><i class="fa fa-user w3-text-blue w3-large w3-white"></i></td>
+              <td >hey guys can i ask a doubt?</td>
+              <td><i>user1</i></td><br>
+            </tr>
+            <tr class="w3-light-grey">
+              <td><i class="fa fa-user w3-text-blue w3-large w3-light-grey"></i></td>
+              <td >hey u can ask</td>
+              <td><i>user2</i></td><br>
+            </tr>
+            <tr class="w3-white">
+              <td><i class="fa fa-user w3-text-blue w3-large w3-white"></i></td>
+              <td >whats exactly should be there in home page</td>
+              <td><i>user1</i></td>
+            </tr>
+            <tr class="w3-light-grey">
+                <td><i class="fa fa-user w3-text-blue w3-large w3-light-grey"></i></td>
+                <td >you can include info about our project</td>
+                <td><i>user3</i></td>
+              </tr>
+            <tr class="w3-white">
+              <form action="/action_page.php">
+                <tr>
+                  <td colspan="2"><input type="text" id="fname" name="firstname" placeholder="enter message " class="input"></td>
+                  <td><input type="submit" value="Submit" class="submitbtn"></td>
+                 </tr>
+                </form>
+            </tr>
+        </table>
+      </div>
+      <div class="w3-twothird">
+          <p style=" text-align: center;" class="cont2">
+        <SPAN style="font-size: xx-large;">EMAIL SPAM RECOGNITION</SPAN> 
+            <span style="margin-left:10px ; font-size: 16px; font-weight: normal; color:#888 ;">#1456</span> <br><br>
+          <span >
+            We have said that the problem is to specify the recognition process economically.
+          This involves knowing about the email signal we wish to recognise in order to
+          specify the processing required by the machine. The most striking aspect of email,
+          which achieves its full impact when ASR is considered.
+          </span>
+          </p>
+
+          <div class="flex-parent1">
+            <div class="box123 example">
+              <h2 style="font-size: 180%">Tech used</h2>
+                    <p style="font-size: 140%">js,networks</p>
+            </div>
+          
+            <div class="box123 example">
+              <h2 style="font-size: 180%">Deadline</h2>
+              <p style="font-size: 140%">3-11-2022</p>
+            </div>
+          </div>
+
+
+          <div class="flex-parent1">
+            <div class="box123">
+              <h2 style="font-size: 180%">Course code</h2>
+                  <p style="font-size: 140%">19CSE301</p>
+            </div>
+          
+            <div class="box123">
+              <h2 style="font-size: 180%">Mentor name</h2>
+              <p style="font-size: 140%">G.R.Ramya</p>
+            </div>
+          </div>
+
+       
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <h1 style="text-align: center;"> TEAM MEMBERS</h1>
+  <ul class="cards">
+    <li>
+      <a href="" class="card">
+        <img src="avathar2.jpg" class="card__image" alt="" />
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+
+            <div class="card__header-text">
+              <h3 class="card__title">Saanvi Bhansali</h3>            
+            </div>
+          </div>
+          <p class="card__description"> email: saanvi@gmail.com <br>projects done: 5<br>tasks completed: 20 </p>
+        </div>
+      </a>      
+    </li>
+    <li>
+      <a href="" class="card">
+        <img src="avathar3.webp" class="card__image" alt="" />
+        <div class="card__overlay">        
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+            
+            <div class="card__header-text">
+              <h3 class="card__title">Zeke Jackson</h3>
+            </div>
+          </div>
+          <p class="card__description">email: zeke@gmail.com <br> projects done: 3<br> tasks completed: 15</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="" class="card">
+        <img src="avathar1.webp" class="card__image" alt="" />
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+            
+            <div class="card__header-text">
+              <h3 class="card__title">Mickella Stone</h3>      
+            </div>
+          </div>
+          <p class="card__description">email: mick@gmail.com <br>projects done: 9<br> tasks completed: 23</p>
+        </div>
+      </a>
+    </li>   
+  </ul>
+</div>
+              
+</div>
+</perfect-scrollbar>
+</div>
+
+</div>
+</div>
+<footer  id="footer" style="text-align: center;">
+  <div >
+    <br>
+    <i class="social-icon  fab fa-facebook-f"></i>
+    <i class="social-icon  fab fa-twitter"></i>
+    <i class="social-icon  fab fa-instagram"></i>
+    <i class="social-icon  fas fa-envelope"></i>
+    <p>© Copyright 2022 ProjectValued</p>
+    <br>
+  </div>
+  </footer>
+</div>
+<!-- Footer -->
+  
+
+<!-- End page content -->
+</div>
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+        
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+        
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+          if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+          } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+          }
+        }
+        
+        // Close the sidebar with the close button
+        function w3_close() {
+          mySidebar.style.display = "none";
+          overlayBg.style.display = "none";
+        }
+        </script>
