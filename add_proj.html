@@ -27,11 +27,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 <body class="w3-light-grey">
 
 <!-- Top container -->
-<div class="w3-bar w3-top colored-section w3-large" style="z-index:4; background-color: #ff4c68; color: white;">
-  <a class="w3-bar-item w3-left">ProjectValued</a>
-  
-  <span class="w3-bar-item w3-right "> Search </span>
-</div>
+<div class="w3-bar w3-top colored-section w3-large" style="z-index:4;background-color: #ff4c68;">
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+    <a href="dashboard.html" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
+    
+    <span class="w3-bar-item w3-right "> Search </span>
+  </div>
 
 
 
@@ -87,7 +88,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                         <div class="row gutters">
                             <div >
                                 <div class="text-right">
-                                    <a href="projlist.html" class="btn btn-secondary" role="button">Cancel</a>
+                                    <a href="dashboard.html" class="btn btn-secondary" role="button" onclick="history.back()">Cancel</a>
                                     <button type="button" onclick="return validation()" class="btn btn-primary"> submit </button>
                                 </div>
                             </div>

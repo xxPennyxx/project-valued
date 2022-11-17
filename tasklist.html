@@ -17,28 +17,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="tasklist_js.js"></script>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 *{
     font-size: 1.25rem;
 }
 </style>
+
 </head>
-<body class="w3-light-grey">
+<body class="w3-light-grey" onload='displayTask()'>
 
 <!-- Top container -->
 <div class="w3-bar w3-top colored-section w3-large" style="z-index:4;border: ;">
-  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="open();"><i class="fa fa-bars"></i>  Menu</button>
-  <a class="w3-bar-item w3-left">ProjectValued</a>
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <a href="dashboard.html" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
   
   <span class="w3-bar-item w3-right "> Search </span>
 </div>
-<!-- <div class="w3-bar w3-top colored-section w3-large" style="z-index:4">
-  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="open();"><i class="fa fa-bars"></i>  Menu</button>
-  <a style="margin: 5% 0% 0% 2%;">ProjectValued</a>
-  <span class="w3-bar-item w3-right"> Search </span>
-</div> -->
+
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
@@ -52,28 +49,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
     </div>
   </div>
   <hr>
-  <div class="w3-container">
-    <h2>Dashboard</h2>
-  </div>
+
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-calendar"></i>  Calendar</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  E-commerce</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope"></i>  Mailbox</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
 
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  My Profile</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-
+    <a href="tasklist.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+    <a onclick="myFunction()" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>      <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a>
+      <a href="editprofile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>Edit Profile</a>
+      <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+  
 
   </div>
 </nav>
 
 
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -93,7 +84,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                 class="fa fa-tasks"></i>&nbsp;Task Lists
             </div>
             <div class="d-block text-right ml-auto p-2" style="text-align: right;">
-              <!-- <button class="mr-2 btn btn-link btn-sm">Cancel</button> -->
+               <!-- <button class="mr-2 btn btn-link btn-sm" onclick="selectall()">Cancel</button> -->
               <a href="newtask.html" class="btn btn-primary" role="button">Add Task</a>
             </div>
         </div>
@@ -103,6 +94,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
           <perfect-scrollbar class="ps-show-limits">
             <div style="position: static;" class="ps ps--active-y">
               <div class="ps-content">
+                <form action="#" name="prog">
                 <ul class=" list-group list-group-flush">
                   <li class="list-group-item">
                     <div class="todo-indicator bg-warning"></div>
@@ -112,22 +104,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                           <div class="custom-checkbox custom-control">
                             <input class="custom-control-input"
                               id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label"
-                              for="exampleCustomCheckbox12">&nbsp;</label>
+                              for="exampleCustomCheckbox12" name="box1">&nbsp;</label>
                             </div>
                         </div>
                         <div class="widget-content-left">
                           <div class="widget-heading">Classifying the Mails<div class="badge badge-danger ml-2">Important</div>
                           </div>
-                          <div class="widget-subheading"><i>By Bob</i></div>
+                          <div class="widget-subheading"><i>Bob</i></div>
                         </div>
                       <div class="widget-content-right">
-                        <button class="border-0 btn-transition btn btn-outline-warning">
-                          <i class="fas fa-edit"></i></button>
+                        <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                          <i class="fa fa-trash"></i>
-                         
                         </button>
+                        
                       </div>
+                      </div>
+                    </div>
+                    
+                    <div class="collapse" id="collapseExample1">
+                      <div class="card card-body" style="width:75%; margin:auto;">
+                        It is another advanced-level ML project where you have to deal mostly with audio data.
+                        Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                        To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                      <br>
                       </div>
                     </div>
                   </li>
@@ -137,26 +138,34 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                       <div class="widget-content-wrapper">
                         <div class="widget-content-left mr-2">
                           <div class="custom-checkbox custom-control"><input class="custom-control-input"
-                              id="exampleCustomCheckbox1" type="checkbox"><label class="custom-control-label"
+                              id="exampleCustomCheckbox1" type="checkbox" name="box2"><label class="custom-control-label"
                               for="exampleCustomCheckbox1">&nbsp;</label></div>
                         </div>
                         <div class="widget-content-left">
                           <div class="widget-heading">Select Type of Learning</div>
                           <div class="widget-subheading">
-                            <div>By Johnny <div class="badge badge-pill badge-info ml-2">NEW</div>
+                            <div>Johnny <div class="badge badge-pill badge-info ml-2">NEW</div>
                             </div>
                             
                           </div>
                           
                         </div>
                         <div class="widget-content-right">
-                          <button class="border-0 btn-transition btn btn-outline-warning">
-                            <i class="fas fa-edit"></i></button>
+                          <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                             <i class="fa fa-trash"></i>
                         
                           </button>
                         </div>
+                      </div>
+                    </div>
+                    <div class="collapse" id="collapseExample2">
+                      <div class="card card-body" style="width:75%; margin:auto;">
+                        It is another advanced-level ML project where you have to deal mostly with audio data.
+                        Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                        To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                      <br>
                       </div>
                     </div>
                   </li>
@@ -167,21 +176,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                         <div class="widget-content-left mr-2">
                           <div class="custom-checkbox custom-control"><input class="custom-control-input"
                               id="exampleCustomCheckbox4" type="checkbox"><label class="custom-control-label"
-                              for="exampleCustomCheckbox4">&nbsp;</label></div>
+                              for="exampleCustomCheckbox4" name="box3">&nbsp;</label></div>
                         </div>
                         <div class="widget-content-left flex2">
                           <div class="widget-heading">Data(Mail) Collection</div>
-                          <div class="widget-subheading">By Samino!</div>
+                          <div class="widget-subheading">Samino!</div>
                         </div>
                         
                         <div class="widget-content-right">
-                          <button class="border-0 btn-transition btn btn-outline-warning">
-                            <i class="fas fa-edit"></i></button>
+                          <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                             <i class="fa fa-trash"></i>
                         
                           </button>
                         </div>
+                      </div>
+                    </div>
+                    <div class="collapse" id="collapseExample3">
+                      <div class="card card-body" style="width:75%; margin:auto;">
+                        It is another advanced-level ML project where you have to deal mostly with audio data.
+                        Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                        To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                      <br>
                       </div>
                     </div>
                   </li>
@@ -192,21 +209,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                         <div class="widget-content-left mr-2">
                           <div class="custom-checkbox custom-control"><input class="custom-control-input"
                               id="exampleCustomCheckbox2" type="checkbox"><label class="custom-control-label"
-                              for="exampleCustomCheckbox2">&nbsp;</label></div>
+                              for="exampleCustomCheckbox2" name="box4" >&nbsp;</label></div>
                         </div>
                         
                         <div class="widget-content-left">
                           <div class="widget-heading">Dividing Training And Testing Data</div>
-                          <div class="widget-subheading">By Tida</div>
+                          <div class="widget-subheading">Tida</div>
                         </div>
                         <div class="widget-content-right">
-                          <button class="border-0 btn-transition btn btn-outline-warning">
-                            <i class="fas fa-edit"></i></button>
+                          <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                             <i class="fa fa-trash"></i>
                         
                           </button>
                         </div>
+                      </div>
+                    </div>
+                    <div class="collapse" id="collapseExample4">
+                      <div class="card card-body" style="width:75%; margin:auto;">
+                        It is another advanced-level ML project where you have to deal mostly with audio data.
+                        Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                        To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                      <br>
                       </div>
                     </div>
                   </li>
@@ -217,21 +242,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                         <div class="widget-content-left mr-2">
                           <div class="custom-checkbox custom-control"><input class="custom-control-input"
                               id="exampleCustomCheckbox3" type="checkbox"><label class="custom-control-label"
-                              for="exampleCustomCheckbox3">&nbsp;</label></div>
+                              for="exampleCustomCheckbox3" name="box5" >&nbsp;</label></div>
                         </div>
                         <div class="widget-content-left flex2">
                           <div class="widget-heading">Training The Model</div>
-                          <div class="widget-subheading">By Office Admin</div>
+                          <div class="widget-subheading">Johnny</div>
                         </div>
                         
                         <div class="widget-content-right">
-                          <button class="border-0 btn-transition btn btn-outline-warning">
-                            <i class="fas fa-edit"></i></button>
+                          <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                             <i class="fa fa-trash"></i>
                         
                           </button>
                         </div>
+                      </div>
+                    </div>
+                    <div class="collapse" id="collapseExample5">
+                      <div class="card card-body" style="width:75%; margin:auto;">
+                        It is another advanced-level ML project where you have to deal mostly with audio data.
+                        Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+                        To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
+                      <br>
                       </div>
                     </div>
                   </li>
@@ -241,16 +274,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                       <div class="widget-content-wrapper">
                         <div class="widget-content-left mr-2">
                           <div class="custom-checkbox custom-control"><input class="custom-control-input" id="exampleCustomCheckbox10"
-                              type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox10">&nbsp;</label></div>
+                              type="checkbox" name="box6" ><label class="custom-control-label" for="exampleCustomCheckbox10">&nbsp;</label></div>
                         </div>
                         <div class="widget-content-left flex2">
-                          <div class="widget-heading">Testing Model</div>
-                          <div class="widget-subheading">By CEO</div>
+                          <div class="widget-heading" id='name'>Testing Model</div>
+                          <div class="widget-subheading" id='Assigned'>Bob</div>
                         </div>
                   
                         <div class="widget-content-right">
-                          <button class="border-0 btn-transition btn btn-outline-warning ">
-                            <i class="	fas fa-edit"></i></button>
+                          <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down"></i></button>
                           <button class="border-0 btn-transition btn btn-outline-danger">
                             <i class="fa fa-trash"></i>
                   
@@ -258,8 +291,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                         </div>
                       </div>
                     </div>
+                    <div class="collapse" id="collapseExample6">
+                      <div class="card card-body" style="width:75%; margin:auto;" id='dec'>
+                        
+                      <br>
+                      </div>
+                    </div>
                   </li>
                 </ul>
+              </form>
               </div>
               
             </div>
@@ -296,7 +336,7 @@ var mySidebar = document.getElementById("mySidebar");
 var overlayBg = document.getElementById("myOverlay");
 
 // Toggle between showing and hiding the sidebar, and add overlay effect
-function open() {
+function w3_open() {
   if (mySidebar.style.display === 'block') {
     mySidebar.style.display = 'none';
     overlayBg.style.display = "none";
@@ -307,7 +347,7 @@ function open() {
 }
 
 // Close the sidebar with the close button
-function close() {
+function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
 }
