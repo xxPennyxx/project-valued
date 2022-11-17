@@ -1,17 +1,33 @@
 
         
     function validateForm(){
-        validateusername();
-        // if(x==False){
-        //     return False
-        // }
-        Validateemail();
-        validatePhoneNumber();
-        
-        validatestreet();
-        validatecity();
-        validatestate();
-        validatezipcode();
+        if(!validateusername()){
+            return False;
+        }
+
+        if(!Validateemail()){
+            return False;
+        }
+
+        if(!validatePhoneNumber()){
+            return False;
+        }
+
+        if(!validatestreet()){
+            return False;
+        }
+
+        if(!validatecity()){
+            return False;
+        }
+
+        if(!validatestate()){
+            return False;
+        }
+
+        if(!validatezipcode()){
+            return False;
+        }
        
     }
 

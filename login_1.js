@@ -50,12 +50,14 @@ const container = document.querySelector(".container"),
         }
 
         if (password === pass[mail]){
+            window.location.href = "dashboard.html"; 
             return true;
         }
         else{ 
             alert("You have entered wrong password");
             return false;
         }
+        
     }
 
 

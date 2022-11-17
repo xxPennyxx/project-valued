@@ -37,13 +37,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif;
 font-size: 1.2rem;
 }
 </style>
+<script>
+  function myFunction() {
+    alert("You can open tasks for each proejct only");
+  }
+</script>
 </head>
 <body class="w3-light-grey">
 
 <!-- Top container -->
-<div class="w3-bar w3-top colored-section w3-large" style="z-index:4">
+<div class="w3-bar w3-top colored-section w3-large" style="z-index:4;border: ;">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <span class="w3-bar-item w3-right">Search</span>
+  <a href="dashboard.html" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
+  
+  <span class="w3-bar-item w3-right "> Search </span>
 </div>
 
 <!-- Sidebar/menu -->
@@ -62,8 +69,8 @@ font-size: 1.2rem;
   </div>
   <div class="w3-bar-block" >
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">   X   Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
+    <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+    <a href="dashboard.html" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
 
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a>
     <a href="editprofile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  Edit Profile</a>
@@ -101,13 +108,11 @@ font-size: 1.2rem;
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
   <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
-    <h1 style="font-size:2rem"><b>Dashboard</b></h1>
-  </header>
+  
 
   
      
-  <div class="w3-panel row">
+  <div class="w3-panel row" >
 
     <div class="col-lg-6 col-md-12 w3-half" style="width:50%; margin:auto; padding: 2rem; background-color:rgb(255, 255, 142)">
       <h1 style="font-size:1.825rem" id="day"></h1>
@@ -157,7 +162,7 @@ font-size: 1.2rem;
           It is another advanced-level ML project where you have to deal mostly with audio data.
           Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
           To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
-          <br> <br> <a class="btn btn-success" style="width:40%; margin:auto;" href=""> Visit project </a>
+          <br> <br> <a class="btn btn-success" style="width:40%; margin:auto;" href="v1.html"> Visit project </a>
         <br>
         </div>
       </div>
@@ -211,7 +216,7 @@ font-size: 1.2rem;
           It is because these apps render machine learning models that try to understand the customer's taste.  
           All modern apps come with a recommendation engine that suggests users for more engagement.   <br> <br>
           
-          <a class="btn btn-success" style="width:40%; margin:auto;" href=""> Visit project </a>
+          <a class="btn btn-success" style="width:40%; margin:auto;" href="v2.html"> Visit project </a>
         <br>
         </div>
       </div>

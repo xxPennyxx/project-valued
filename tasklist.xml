@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE tasklist SYSTEM "tasklist_dtd.dtd"> -->
+<tasklist>
+	<task>
+		<taskname>Testing Model</taskname>
+		<AssignedTO>Bob</AssignedTO>
+		<description>After training th emodel we need to test the using test data set whether the outputs are valid or not</description>
+	</task>
+	
+	<task>
+		<taskname>Classifying the Mails</taskname>
+		<AssignedTO>Bob</AssignedTO>
+		<description>classifing as spam or not</description>
+	</task>
+	
+	<task>
+		<taskname>Select Type of Learning</taskname>
+		<AssignedTO>Johnny</AssignedTO>
+		<description>to select with model will be perfect here mostly btw supervised or unsupervised</description>
+	</task>
+	
+	<task>
+		<taskname>Data(Mail) Collection</taskname>
+		<AssignedTO>Samino!</AssignedTO>
+		<description>Collecting the all mails which are leabled is hard and we need to processes that data</description>
+	</task>
+	
+	
+	<task>
+		<taskname>Dividing Training And Testing Data</taskname>
+		<AssignedTO>Tida</AssignedTO>
+		<description>we can divide test data data and training data in many ways, mostly we will divide in 20:80 ratio</description>
+	</task>
+	
+	
+	<task>
+		<taskname>Training The Model</taskname>
+		<AssignedTO>Johnny </AssignedTO>
+		<description>Training the test data can be in many types like KNN and Decision-Tree, we need to select best in that</description>
+	</task>
+	
+	
+</tasklist>

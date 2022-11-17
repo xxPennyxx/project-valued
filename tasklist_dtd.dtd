@@ -1,0 +1,8 @@
+tasklist[
+<!ELEMENT tasklist(task)>
+<!ELEMENT task(taskname,AssignedTO,description)>
+<!ELEMENT taskname(#PCDATA)>
+<!ELEMENT AssignedTO(#PCDATA)>
+<!ELEMENT description(#PCDATA)>
+]
+
