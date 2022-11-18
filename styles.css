@@ -25,7 +25,9 @@ p {
 }
 
 
-
+a{
+  text-decoration: none;
+}
 
 
 @media all and (max-width: 768px) {
