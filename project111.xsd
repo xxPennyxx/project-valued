@@ -1,0 +1,74 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="projects">
+		<xs:complexType>
+		<xs:sequence>
+		
+		
+				<xs:element name="project" maxOccurs="unbounded">
+					<xs:complexType>
+					<xs:sequence>
+						<xs:element name="projectName" type="xs:string"/>
+						<xs:element name="projectID" type="xs:positiveInteger"/>
+						<xs:element name="projectDes" type="xs:string"/>
+						<xs:element name="techUsed" type="xs:string"/>
+						<xs:element name="deadline" type="xs:date"/>
+						<xs:element name="mentorName" type="xs:string"/>
+						<xs:element name="courseCode" type="xs:string"/>
+							<!--<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="[0-9][0-9][A-Z][A-Z][A-Z][0-9][0-9][0-9]"/>
+								</xs:restriction>
+							</xs:simpleType> -->
+						<xs:element name="teamMem">
+							<xs:complexType>
+							<xs:sequence>
+							
+								<xs:element name="mem" maxOccurs="unbounded">
+									<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string"/>
+										<xs:element name="email" type="xs:string"/>
+									</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								
+							</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						
+						<xs:element name="tasks">
+							<xs:complexType>
+							<xs:sequence>
+							
+								<xs:element name="task" maxOccurs="unbounded">
+									<xs:complexType>
+									<xs:sequence>
+										<xs:element name="taskname" type="xs:string"/>
+										<xs:element name="AssignedTO" type="xs:string"/>
+										<xs:element name="description" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="important" default="No"/>
+										<!--<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="No"/>
+												<xs:enumeration value="Yes"/>
+											</xs:restriction>
+										</xs:simpleType>-->
+									</xs:complexType>
+								</xs:element>
+								
+							</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						
+						
+					</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				
+				
+		</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+	

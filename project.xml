@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="project.xsl"?>
+
+	<projects xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project.xsd">
+		<project>
+			<projectName>Email Spam Recognition</projectName>
+			<projectID>1456</projectID>
+			<projectDes>We have said that the problem is to specify the recognition process economically. This involves knowing about the email signal we wish to recognise in order to specify the processing required by the machine. The most striking aspect of email, which achieves its full impact when ASR is considered.</projectDes>
+			<techUsed>JS, Networks</techUsed>
+			<deadline>2022-11-03</deadline>
+			<mentorName>G.R. Ramya</mentorName>
+			<courseCode>19CSE301</courseCode>
+			<progress>25</progress>
+			<teamMem>
+				<mem>
+					<name>Yashasvi</name>
+					<email>yash@gmail.com</email>
+				</mem>
+				 <mem>
+					<name>Lohith</name>
+					<email>lohith@gmail.com</email>
+				</mem>
+				<mem>	
+					<name>Deepthi</name>
+					<email>deepthi@gmail.com</email>
+				</mem>
+				<mem>
+					<name>Vaidehi</name>
+					<email>vaidehi@gmail.com3</email>
+				</mem> 
+			</teamMem>
+			<tasks>
+					<task important="Yes">
+						<taskname>Testing Model</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>After training th emodel we need to test the using test data set whether the outputs are valid or not</description>
+					</task>
+					
+					 <task>
+						<taskname>Classifying the Mails</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>classifing as spam or not</description>
+					</task>
+					
+					<task>
+						<taskname>Select Type of Learning</taskname>
+						<AssignedTO>Johnny</AssignedTO>
+						<description>to select with model will be perfect here mostly btw supervised or unsupervised</description>
+					</task>
+					
+					<task>
+						<taskname>Data(Mail) Collection</taskname>
+						<AssignedTO>Samino!</AssignedTO>
+						<description>Collecting the all mails which are leabled is hard and we need to processes that data</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Dividing Training And Testing Data</taskname>
+						<AssignedTO>Tida</AssignedTO>
+						<description>we can divide test data data and training data in many ways, mostly we will divide in 20:80 ratio</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Training The Model</taskname>
+						<AssignedTO>Johnny </AssignedTO>
+						<description>Training the test data can be in many types like KNN and Decision-Tree, we need to select best in that</description>
+					</task> 
+			</tasks>
+		</project>
+		
+		
+		
+		<project>
+			<projectName>Voice Recognition </projectName>
+			<projectID>1457</projectID>
+			<projectDes>It is another advanced-level ML project where you have to deal mostly with audio data.
+				Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+				To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input</projectDes>
+			<techUsed>Angular Js</techUsed>
+			<deadline>2023-12-01</deadline>
+			<mentorName>Remya K</mentorName>
+			<courseCode>19CSE304</courseCode>
+			<progress>30</progress>
+
+			<teamMem>
+				<mem>
+					<name>Deepthi</name>
+					<email>deepthi@gmail.com</email>
+					
+				</mem>
+				<mem>
+					<name>Lohith</name>
+					<email>lohith@gmail.com</email>
+				</mem>
+				<mem>	
+					<name>Yashasvi</name>
+					<email>yash@gmail.com</email>
+				</mem>
+				<mem>
+					<name>Vaidehi</name>
+					<email>vaidehi@gmail.com3</email>
+				</mem>
+			</teamMem>
+			<tasks>
+					<task important="yes">
+						<taskname>Testing Model</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>After training th emodel we need to test the using test data set whether the outputs are valid or not</description>
+					</task>
+					
+					<task>
+						<taskname>Classifying the Mails</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>classifing as spam or not</description>
+					</task>
+					
+					<task>
+						<taskname>Select Type of Learning</taskname>
+						<AssignedTO>Johnny</AssignedTO>
+						<description>to select with model will be perfect here mostly btw supervised or unsupervised</description>
+					</task>
+					
+					<task>
+						<taskname>Data(Mail) Collection</taskname>
+						<AssignedTO>Samino!</AssignedTO>
+						<description>Collecting the all mails which are leabled is hard and we need to processes that data</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Dividing Training And Testing Data</taskname>
+						<AssignedTO>Tida</AssignedTO>
+						<description>we can divide test data data and training data in many ways, mostly we will divide in 20:80 ratio</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Training The Model</taskname>
+						<AssignedTO>Johnny </AssignedTO>
+						<description>Training the test data can be in many types like KNN and Decision-Tree, we need to select best in that</description>
+					</task>
+			</tasks>
+		</project>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<project>
+			<projectName>Recomendation System</projectName>
+			<projectID>1500</projectID>
+			<projectDes>Have you ever seen movies or web series on online streaming platforms? Once you watch one or two of them, 
+				you will notice that apps like Netflix and Amazon Prime recommend new web series and movies. 
+				It is because these apps render machine learning models that try to understand the customer's taste.  
+				All modern apps come with a recommendation engine that suggests users for more engagement.  </projectDes>
+			<techUsed>ML, JSON</techUsed>
+			<deadline>2022-03-04</deadline>
+			<mentorName>Vidya B</mentorName>
+			<courseCode>19CSE303</courseCode>
+			<progress>50</progress>
+
+			<teamMem>
+				<mem>
+					<name>Vaidehi</name>
+					<email>vaidehi@gmail.com3</email>
+
+				</mem>
+				<mem>
+					<name>Lohith</name>
+					<email>lohith@gmail.com</email>
+				</mem>
+				<mem>	
+					<name>Yashasvi</name>
+					<email>yash@gmail.com</email>
+				</mem>
+				<mem>
+					<name>Deepthi</name>
+					<email>deepthi@gmail.com</email>
+				</mem>
+			</teamMem>
+			<tasks>
+					<task important="yes">
+						<taskname>Testing Model</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>After training th emodel we need to test the using test data set whether the outputs are valid or not</description>
+					</task>
+					
+					<task>
+						<taskname>Classifying the Mails</taskname>
+						<AssignedTO>Bob</AssignedTO>
+						<description>classifing as spam or not</description>
+					</task>
+					
+					<task>
+						<taskname>Select Type of Learning</taskname>
+						<AssignedTO>Johnny</AssignedTO>
+						<description>to select with model will be perfect here mostly btw supervised or unsupervised</description>
+					</task>
+					
+					<task>
+						<taskname>Data(Mail) Collection</taskname>
+						<AssignedTO>Samino!</AssignedTO>
+						<description>Collecting the all mails which are leabled is hard and we need to processes that data</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Dividing Training And Testing Data</taskname>
+						<AssignedTO>Tida</AssignedTO>
+						<description>we can divide test data data and training data in many ways, mostly we will divide in 20:80 ratio</description>
+					</task>
+					
+					
+					<task>
+						<taskname>Training The Model</taskname>
+						<AssignedTO>Johnny </AssignedTO>
+						<description>Training the test data can be in many types like KNN and Decision-Tree, we need to select best in that</description>
+					</task>
+			</tasks>
+		</project>
+		
+	</projects>

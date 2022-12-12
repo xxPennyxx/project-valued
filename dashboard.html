@@ -59,12 +59,29 @@ font-size: 1.2rem;
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
-      <img src="images/Profile.png" class="w3-circle w3-margin-right" style="width:70%">
+      <img src="images/Profile.png" class="change w3-circle w3-margin-right" style="width:70%"> <!--default profile pic-->
     </div>
+
+    <script>
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onload = function() {
+  const myObj = JSON.parse(this.responseText);
+     
+  document.getElementById("uname").innerHTML = myObj.name;
+    document.querySelector(".change").setAttribute("src",myObj.imgURL);
+
+}
+xmlhttp.open("GET", "data.json", true);
+xmlhttp.send();
+</script>
+
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>User</strong></span><br>
+      <span>Welcome, <strong><span id="uname"></span></strong></span><br>
       
     </div>
+
+
+
   </div>
   <hr>
   <div class="w3-container">
@@ -74,9 +91,9 @@ font-size: 1.2rem;
     <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
     <a href="dashboard.html" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
 
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a>
-    <a href="editprofile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>  Edit Profile</a>
-    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
+    <a href="editprofile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
+    <br><br><br><br><br><br><br><br><br>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i>  Log Out</a>
   </div>
 </nav>
 
@@ -91,7 +108,7 @@ font-size: 1.2rem;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" name="projectCode" placeholder="eg. XXXXXX">
+        <input type="text" name="projectCode" placeholder="eg. XXXX">
       </div>
       <div class="modal-footer">
         <a href="" class="btn btn-danger" >OK</a>
@@ -117,9 +134,9 @@ font-size: 1.2rem;
   <div class="w3-panel row" >
 
     <div class="col-lg-6 col-md-12 w3-half banana">
-      <h1 style="font-size:1.825rem" id="day"></h1>
-      <h1 style="font-size:3rem; color:darkgreen" id="today"></h1>
-        <h1 style="font-size:2.25rem;"  id="time"></h1>  
+      <h1 style="font-size:2rem" id="day"></h1>
+      <h1 style="font-size:2.5rem; color:darkgreen" id="today"></h1>
+        <h1 style="font-size:2rem;"  id="time"></h1> 
     </div> 
 
     <div class="col-lg-6 col-md-12 w3-half colored-section" style="width:50%; margin:auto; padding: 2rem">
@@ -143,6 +160,7 @@ font-size: 1.2rem;
 
 <div class="w3-container">
   <h1 style="font-size:2rem">Current Projects</h1>
+
   <ul class="w3-ul w3-card-4 w3-white">
     <li class="w3-padding-16">
       <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">

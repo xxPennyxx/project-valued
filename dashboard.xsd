@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="ptitle" type="xs:string"></xs:element>
+<xs:element name="code" type="xs:string"></xs:element>
+<xs:element name="description" type="xs:string"></xs:element>
+<xs:element name="no" type="xs:positiveInteger"></xs:element>
+
+
+<xs:element name="project">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="ptitle"></xs:element>
+            <xs:element ref="code"></xs:element>
+            <xs:element ref="description"></xs:element>
+            <xs:element ref="no"></xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+<xs:element name="dashboard">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element ref="project" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+</xs:schema>

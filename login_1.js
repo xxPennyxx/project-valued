@@ -50,7 +50,8 @@ const container = document.querySelector(".container"),
         }
 
         if (password === pass[mail]){
-            window.location.href = "dashboard.html"; 
+            emailID=emailID.substring(0,at);
+            window.location.href= "dashboard.html?uname="+emailID;
             return true;
         }
         else{ 

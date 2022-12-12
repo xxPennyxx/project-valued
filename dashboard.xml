@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="dashboard.xsl"?>
+
+<dashboard xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="dashboard.xsd">
+    <project>
+        <ptitle>Voice Recognition</ptitle>
+        <code>19CSE305</code>
+        <description>It is another advanced-level ML project where you have to deal mostly with audio data.
+            Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
+            To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input.</description>
+        <no>1</no>
+    </project>
+    <project>
+        <ptitle>Email Spam Recognition</ptitle>
+        <code>19CSE305</code>
+        <description>Mining text is one of the popular computation techniques widely applied in applications like text summarization, topic classification, machine translation, 
+            sentiment analysis, etc. Modern cybersecurity systems are utilizing machine learning methods a lot.
+             Spam filtering also leverages text mining and document classification to segregate legitimate mails and spam emails.</description>
+        <no>2</no>
+    </project>
+    <project>
+
+        <ptitle>Recommendation System</ptitle>
+        <code>19CSE305</code>
+        <description>Have you ever seen movies or web series on online streaming platforms? Once you watch one or two of them, 
+            you will notice that apps like Netflix and Amazon Prime recommend new web series and movies. 
+            It is because these apps render machine learning models that try to understand the customer's taste.  
+            All modern apps come with a recommendation engine that suggests users for more engagement.  </description>
+        <no>2</no>
+
+
+    </project>
+
+</dashboard>
+ 

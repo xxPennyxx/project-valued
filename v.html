@@ -33,23 +33,49 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
     <!-- Top container -->
     <div class="w3-bar w3-top colored-section w3-large" style="z-index:4;background-color: #ff4c68;">
       <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-      <a href="dashboard.html" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
+      <a href="dashboard.php" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
       
       <span class="w3-bar-item w3-right "> Search </span>
     </div>
     
 
     <!-- Sidebar/menu -->
+
+
+
     <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
       <div class="w3-col s4">
-        <img src="images/Profile.png" class="w3-circle " style="width:46px">
+        
+        <img src="images/Profile.png" class="change w3-circle " style="width:46px">
       </div>
-      <div class="w3-col s8 w3-bar">
-        <span>Welcome, <strong>User</strong></span><br>
-       
-      </div>
+
+
+
+      <script>
+const xmlhttp = new XMLHttpRequest();
+xmlhttp.onload = function() {
+  const myObj = JSON.parse(this.responseText);
+     
+  document.getElementById("uname").innerHTML = myObj.name;
+    document.querySelector(".change").setAttribute("src",myObj.imgURL);
+
+}
+xmlhttp.open("GET", "data.json", true);
+xmlhttp.send();
+</script>
+
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong><span id="uname"></span></strong></span><br>
+      
     </div>
+
+      
+    </div>
+
+
+
+    
     <hr>
     <div class="w3-container">
 
