@@ -28,14 +28,16 @@ const container = document.querySelector(".container"),
 
     function validateAll()
     {
-        // var acc=[
-        //     ['yashavi@gmail.com','yashasvi']
-        //     ['lohith@gmail.com','lohith']
-        //     ['deepthi@gmail.com','deepthi']
-        //     ['vaidehi@gmail.com','vaidehi']
-        // ]
-        var usernames=['yashasvi@gmail.com','lohith@gmail.com','deepthi@gmail.com','vaidehi@gmail.com']
-        var pass=['yashasvi','lohith','deepthi','vaidehi']
+        // // var acc=[
+        // //     ['yashavi@gmail.com','yashasvi']
+        // //     ['lohith@gmail.com','lohith']
+        // //     ['deepthi@gmail.com','deepthi']
+        // //     ['vaidehi@gmail.com','vaidehi']
+        // // ]
+        // var usernames=['yashasvi@gmail.com','lohith@gmail.com','deepthi@gmail.com','vaidehi@gmail.com']
+        // var pass=['yashasvi','lohith','deepthi','vaidehi']
+
+        var data=JSON.parse('{"name":"Lohith","email":"lohithchandra@gmail.com","password":"lohith"}')
 
         var emailID=document.loginForm.email.value;
         var password=document.loginForm.password.value;
@@ -43,15 +45,13 @@ const container = document.querySelector(".container"),
 
         var at=emailID.indexOf('@');
         var dot=emailID.lastIndexOf('.')
-        var mail=usernames.indexOf(emailID)
-        if((at==-1)||(dot==-1)||(dot-at<2)||(mail==-1)){
+        if((at==-1)||(dot==-1)||(dot-at<2)||(emailID!=data.email)){
             alert("You have entered an invalid email address!");
             return false;
         }
 
-        if (password === pass[mail]){
-            emailID=emailID.substring(0,at);
-            window.location.href= "dashboard.html?uname="+emailID;
+        if (password === data.password){
+            window.location.href= "dashboard.html";
             return true;
         }
         else{ 

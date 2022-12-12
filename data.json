@@ -4,5 +4,9 @@
     "imgURL":"https://thumbs.dreamstime.com/b/handsome-man-hair-style-beard-beauty-face-portrait-fashion-male-model-black-hair-high-resolution-handsome-man-125031765.jpg",
     "address":"812379273827912",
     "phone":"3193891232",
-    "bio":"I'm Lohith."
+    "bio":"I'm Lohith. I'm a full stack developer. I'm passionate about coding.",
+    "street":"123 Surrey Street",
+    "city":"Hyderabad",
+    "state":"Telangana",
+    "zipcode":289898
 }
