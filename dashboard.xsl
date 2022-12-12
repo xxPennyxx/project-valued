@@ -1,40 +1,41 @@
-<!DOCTYPE html>
-<?xml-stylesheet type="text/xsl" href="dashboard1.xsl"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:template match="/">
 
 <html>
 <head>
 <title>Dashboard</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="images/favicon.png">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" href="images/favicon.png"/>
 
 
 <!--Google Fonts-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
 
 
 
 <!--Bootstrap-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
 
 
 <!--Font Awesome-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
 
 <!--W3-->
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 
 
 <!--Stylesheet-->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css"/>
 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif;
@@ -58,34 +59,30 @@ font-size: 1.2rem;
 </div>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br/>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
-      <img src="images/Profile.png" class="change w3-circle w3-margin-right" style="width:70%"> <!--default profile pic-->
-    </div>
+      <img src="" class=" change w3-circle w3-margin-right" style="width:70%"/>
+      </div>
 
     <script>
-const xmlhttp = new XMLHttpRequest();
-xmlhttp.onload = function() {
-  const myObj = JSON.parse(this.responseText);
-     
-  document.getElementById("uname").innerHTML = myObj.name;
-    document.querySelector(".change").setAttribute("src",myObj.imgURL);
 
-}
-xmlhttp.open("GET", "data.json", true);
-xmlhttp.send();
+      document.querySelector(".change").setAttribute("src",<?php echo $_POST['imgURL'] ?>);
+
 </script>
 
+    
+
+
+
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong><span id="uname"></span></strong></span><br>
+      <span>Welcome, <strong><?php echo $_POST['fullname']?></strong></span><br/>
       
     </div>
 
 
-
   </div>
-  <hr>
+  <hr/>
   <div class="w3-container">
   </div>
   <div class="w3-bar-block" >
@@ -94,7 +91,7 @@ xmlhttp.send();
     <a href="dashboard.html" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
 
     <a href="editprofile.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
-    <br><br><br><br><br><br><br><br><br>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i>  Log Out</a>
   </div>
 </nav>
@@ -110,7 +107,7 @@ xmlhttp.send();
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" name="projectCode" placeholder="eg. XXXX">
+        <input type="text" name="projectCode" placeholder="eg. XXXX"/>
       </div>
       <div class="modal-footer">
         <a href="" class="btn btn-danger" >OK</a>
@@ -136,9 +133,9 @@ xmlhttp.send();
   <div class="w3-panel row" >
 
     <div class="col-lg-6 col-md-12 w3-half banana">
-      <h1 style="font-size:1.825rem" id="day"></h1>
-      <h1 style="font-size:3rem; color:darkgreen" id="today"></h1>
-        <h1 style="font-size:2.25rem;"  id="time"></h1>  
+      <h1 style="font-size:1.5rem" id="day"></h1>
+      <h1 style="font-size:1.5rem; color:darkgreen" id="today"></h1>
+        <h1 style="font-size:1.5rem;"  id="time"></h1>  
     </div> 
 
     <div class="col-lg-6 col-md-12 w3-half colored-section" style="width:50%; margin:auto; padding: 2rem">
@@ -146,59 +143,115 @@ xmlhttp.send();
       
         <div class="progress" style="height: 5rem;">
           <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-label="Example 20px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div><br>
+        </div><br/>
 
         <a class="btn btn-success w3-large" href="/report.html">Generate report</a>
     </div> 
 
   </div>
 
-<hr>
+<hr/>
 
 
 
 
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:template match="/">
 
 
 
-<div class="w3-container" ng-app="myApp" ng-init="proj=['1','2','3','4','5','6','7','8','9','10']">
+
+<div class="w3-container">
     <h1 style="font-size:2rem">Current Projects</h1>
   
     <ul class="w3-ul w3-card-4 w3-white">
-      <xsl:for-each select="dashboard/project">
-  
-      <li class="w3-padding-16" ng-repeat="x in proj">
-        <span class="w3-xlarge"><xsl:value-of select="ptitle"></xsl:value-of></span><br/>
-        <span class="w3-large">Course code: <xsl:value-of select="code"></xsl:value-of></span>
+      <xsl:for-each select="projects/project">
+        <xsl:if test="projectName='Email Spam Recognition'">
+      <li class="w3-padding-16">
+        <span class="w3-xlarge"><xsl:value-of select="projectName"></xsl:value-of></span><br/>
+        <span class="w3-large">Course code: <xsl:value-of select="courseCode"></xsl:value-of></span>
         <br/>
         <div class="w3-grey" style="width:50%; margin:auto;">
-          <div class="w3-container w3-center w3-padding w3-green" style="width:25%">25%</div>
+          <div class="w3-container w3-center w3-padding w3-green" style="width:25%"><xsl:value-of select="progress"></xsl:value-of></div>
         </div>
         <br/>
         <p>
-          <a class="btn btn-primary" data-bs-toggle="collapse" href="#{{x}}" role="button" aria-expanded="false" aria-controls="">
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
             View details
           </a> 
         </p>
-        <div class="collapse" id="{{x}}">
+        <div class="collapse" id="collapseExample1">
           <div class="card card-body" style="width:75%; margin:auto;">
-              <xsl:value-of select="description"></xsl:value-of> 
-            <br/> <br/> <a class="btn btn-success" style="width:40%; margin:auto;" href="v{{x}}.html"> Visit project </a>
+              <xsl:value-of select="projectDes"></xsl:value-of> 
+            <br/> <br/> <a class="btn btn-success" style="width:30%; margin:auto;" href="v1.html"> Visit project </a>
           <br/>
           </div>
         </div>
       </li>
+    </xsl:if>
   </xsl:for-each>
+
+  <xsl:for-each select="projects/project">
+        <xsl:if test="projectName='Voice Recognition '">
+      <li class="w3-padding-16">
+        <span class="w3-xlarge"><xsl:value-of select="projectName"></xsl:value-of></span><br/>
+        <span class="w3-large">Course code: <xsl:value-of select="courseCode"></xsl:value-of></span>
+        <br/>
+        <div class="w3-grey" style="width:50%; margin:auto;">
+          <div class="w3-container w3-center w3-padding w3-green" style="width:25%"><xsl:value-of select="progress"></xsl:value-of></div>
+        </div>
+        <br/>
+        <p>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+            View details
+          </a> 
+        </p>
+        <div class="collapse" id="collapseExample2">
+          <div class="card card-body" style="width:75%; margin:auto;">
+              <xsl:value-of select="projectDes"></xsl:value-of> 
+            <br/> <br/> <a class="btn btn-success" style="width:50%; margin:auto;" href="v.html"> Visit project </a>
+          <br/>
+          </div>
+        </div>
+      </li>
+    </xsl:if>
+  </xsl:for-each>
+
+  <xsl:for-each select="projects/project">
+        <xsl:if test="projectName='Recomendation System'">
+      <li class="w3-padding-16">
+        <span class="w3-xlarge"><xsl:value-of select="projectName"></xsl:value-of></span><br/>
+        <span class="w3-large">Course code: <xsl:value-of select="courseCode"></xsl:value-of></span>
+        <br/>
+        <div class="w3-grey" style="width:50%; margin:auto;">
+          <div class="w3-container w3-center w3-padding w3-green" style="width:25%"><xsl:value-of select="progress"></xsl:value-of></div>
+        </div>
+        <br/>
+        <p>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+            View details
+          </a> 
+        </p>
+        <div class="collapse" id="collapseExample3">
+          <div class="card card-body" style="width:75%; margin:auto;">
+              <xsl:value-of select="projectDes"></xsl:value-of> 
+            <br/> <br/> <a class="btn btn-success" style="width:40%; margin:auto;" href="v2.html"> Visit project </a>
+          <br/>
+          </div>
+        </div>
+      </li>
+    </xsl:if>
+  </xsl:for-each>
+
+
+
+
+  
   
 
     <li class="w3-padding-16" style="background-color:#ffadc6">
-      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-      <span class="w3-xxlarge">Add Project</span><br>
+      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px"/>
+      <span class="w3-xxlarge">Add Project</span><br/>
       <span class="w3-large">Click the button below to add a project.</span>
-      <br>
+      <br/>
       <p>
         <a class="btn btn-success" role="button" href="add_proj.html">
           Add project
@@ -210,8 +263,7 @@ xmlhttp.send();
   </ul>
 </div>
 
-</xsl:template></xsl:stylesheet>
-<hr>
+<hr/>
 
 
 
@@ -286,3 +338,4 @@ getTime();
 
 </body>
 </html>
+</xsl:template></xsl:stylesheet>
