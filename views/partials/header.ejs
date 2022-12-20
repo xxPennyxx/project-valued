@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="images/favicon.png">
+
+
+<!--Google Fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+
+
+<!--Bootstrap-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<!--Font Awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+
+<!--W3-->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<!--Stylesheet-->
+<link rel="stylesheet" href="styles.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif;
+font-size: 1.2rem;
+}
+</style>
+<script>
+  function myFunction() {
+    alert("You can open tasks for each project only");
+  }
+</script>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top colored-section w3-large" style="z-index:4;">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <a href="dashboard.html" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
+  
+  <span class="w3-bar-item w3-right "> Search </span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="<%=EditedProfiles1[EditedProfiles1.length-1].imgURL%>" class="change w3-circle w3-margin-right" style="width:70%"> <!--default profile pic-->
+    </div>
+
+    
+
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong><%=EditedProfiles1[EditedProfiles1.length-1].fullname %></strong></span><br>
+      
+    </div>
+
+
+
+  </div>
+  <hr>
+  <div class="w3-container">
+  </div>
+  <div class="w3-bar-block" >
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">   X   Close Menu</a>
+    <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+    <a href="/dashboard" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
+
+    <a href="/editprofile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
+    <br><br><br><br><br><br><br><br><br>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i>  Log Out</a>
+  </div>
+</nav>
+
+
+<!--Modal-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter code to join a project</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="projectCode" placeholder="eg. XXXX">
+      </div>
+      <div class="modal-footer">
+        <a href="" class="btn btn-danger" >OK</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  
