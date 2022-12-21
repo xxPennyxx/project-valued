@@ -26,7 +26,7 @@ app.get("/",function(req,res){
   });
 
   app.get("/editprofile",function(req,res){
-    res.render("editprofile",{newUsers1:newUsers});
+    res.render("editprofile",{newUsers1:newUsers, EditedProfiles1:EditedProfiles});
   });
 
 

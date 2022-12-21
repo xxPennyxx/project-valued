@@ -56,21 +56,17 @@ font-size: 1.2rem;
 </div>
 
 <!-- Sidebar/menu -->
+
+
+<% if (EditedProfiles1.length!=0){ %>
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
       <img src="<%=EditedProfiles1[EditedProfiles1.length-1].imgURL%>" class="change w3-circle w3-margin-right" style="width:70%"> <!--default profile pic-->
     </div>
-
-    
-
     <div class="w3-col s8 w3-bar">
       <span>Welcome, <strong><%=EditedProfiles1[EditedProfiles1.length-1].fullname %></strong></span><br>
-      
     </div>
-
-
-
   </div>
   <hr>
   <div class="w3-container">
@@ -86,6 +82,35 @@ font-size: 1.2rem;
   </div>
 </nav>
 
+<% } else { %>
+
+
+  <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container w3-row">
+      <div class="w3-col s4">
+        <img src="images/Profile.png" class="change w3-circle w3-margin-right" style="width:70%"> <!--default profile pic-->
+      </div>
+      <div class="w3-col s8 w3-bar">
+        <span>Welcome, <strong><%=newUsers1[newUsers1.length-1].username %></strong></span><br>
+      </div>
+    </div>
+    <hr>
+    <div class="w3-container">
+    </div>
+    <div class="w3-bar-block" >
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">   X   Close Menu</a>
+      <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+      <a href="/dashboard" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
+  
+      <a href="/editprofile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
+      <br><br><br><br><br><br><br><br><br>
+      <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i>  Log Out</a>
+    </div>
+  </nav>
+
+
+
+ <% } %>
 
 <!--Modal-->
 
