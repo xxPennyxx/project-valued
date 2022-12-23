@@ -25,7 +25,7 @@ const credsSchema = {
   password1:String,
   phonenumber:Number,
   imgURL:String,
-  address:String,
+  street:String,
   city:String,
   state:String,
   zipcode: Number,
@@ -51,6 +51,8 @@ app.get("/",function(req,res){
  
 
   app.get("/editprofile",function(req,res){
+    console.log(newUsers);
+
     res.render("editprofile",{newUsers1:newUsers});
   });
 
@@ -132,8 +134,6 @@ app.get("/",function(req,res){
     const newPhoneNumber=req.body.phonenumber;
     const newimgURL=req.body.imgURL;
     const newAbout=req.body.about;
-    const newAddress=req.body.address;
-
     const newStreet=req.body.street;
     const newCity=req.body.city;
     const newState=req.body.state;
@@ -146,7 +146,7 @@ app.get("/",function(req,res){
     email:newEmail,
     phonenumber:newPhoneNumber,
     imgURL:newimgURL,
-    address:newAddress,
+    street:newStreet,
     city:newCity,
     state:newState,
     zipcode:newZipcode,

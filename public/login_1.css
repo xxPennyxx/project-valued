@@ -36,3 +36,14 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.purple{
+  background-color: #ff3e7e;
+}
+.standout{
+  font-size:100px;
+  font-weight: 700;
+  color:white
+}
+.white{
+  color:white
+}
