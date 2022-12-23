@@ -7,11 +7,10 @@ mongoose.set("strictQuery", false);
 
 mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 
-/*
+
 let newUsers=[];
 let loggedInUsers=[];
-let EditedProfiles=[];
-*/
+
 let app=express();
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,15 +22,7 @@ const credsSchema = {
   username: String,
   email:String,
   password:String,
-  password1:String
-};
-
-const Credential = mongoose.model("Credential", credsSchema);
-
-
-
-const profileSchema={
-  credentials:credsSchema,//relationship b/w credentials and actual profile
+  password1:String,
   phonenumber:Number,
   imgURL:String,
   address:String,
@@ -39,10 +30,10 @@ const profileSchema={
   state:String,
   zipcode: Number,
   about: String
+};
 
-}
+const Credential = mongoose.model("Credential", credsSchema);
 
-const Profile = mongoose.model("Profile", profileSchema);
 
 
 app.get("/",function(req,res){
@@ -60,7 +51,7 @@ app.get("/",function(req,res){
  
 
   app.get("/editprofile",function(req,res){
-    res.render("editprofile",{newUsers1:[], EditedProfiles1:[]});
+    res.render("editprofile",{newUsers1:newUsers});
   });
 
 
@@ -77,13 +68,12 @@ app.get("/",function(req,res){
    password1:newPassword1
      });
  
-   var newUsers=Credential.find({username:newUsername, email:newEmail},function(err,foundItems){
+   var newUsers=Credential.find({email:newEmail},function(err,foundItems){
 
     if(foundItems.length===0){
       profile.save();
       console.log(profile.username+" is a new user!");
       res.redirect("/login");
-      //res.render("dashboard",{newUsers1:foundItems, EditedProfiles1: foundItems})
 
 
     }
@@ -100,7 +90,8 @@ app.get("/",function(req,res){
 
 
    app.get("/dashboard",function(req,res){
-    //res.render("dashboard");
+    res.render("dashboard",{newUsers1:newUsers})
+
 
   });
 
@@ -110,7 +101,7 @@ app.get("/",function(req,res){
     
     const loginEmail=req.body.email;
     const loginpwd=req.body.password;
-    var LoggedInUsers=Credential.find({email:loginEmail}, function(err,foundItems){
+    var LoggedInUsers=Credential.find({email:loginEmail, password: loginpwd}, function(err,foundItems){
       
 
       if(foundItems.length===0){  
@@ -119,8 +110,9 @@ app.get("/",function(req,res){
       }
       else
       {
+        newUsers=foundItems;
+        res.redirect("/dashboard");
         //console.log(foundItems[foundItems.length-1].username+" is SUS!")
-        res.render("dashboard",{newUsers1:foundItems, EditedProfiles1: foundItems})
       }
 
       }) 
@@ -134,28 +126,56 @@ app.get("/",function(req,res){
 
 
   app.post("/editprofile",function(req,res){
-    const newEditedUser={
-        fullname:req.body.fullname,
-    email:req.body.email,
-    phonenumber:req.body.phonenumber,
-    imgURL:req.body.imgURL,
-    about:req.body.about,
-    street:req.body.street,
-    city:req.body.city,
-    state:req.body.state,
-    zipcode:req.body.zipcode
-     } ;
     
-     EditedProfiles.push(newEditedUser);
+     const newFullName=req.body.fullname;
+    const newEmail=req.body.email;
+    const newPhoneNumber=req.body.phonenumber;
+    const newimgURL=req.body.imgURL;
+    const newAbout=req.body.about;
+    const newAddress=req.body.address;
 
-     //console.log(newEditedUser);
-     res.redirect("/dashboard");
+    const newStreet=req.body.street;
+    const newCity=req.body.city;
+    const newState=req.body.state;
+    const newZipcode=req.body.zipcode;
+    const profileToUpdate=req.body.update;
+    
+    
+
+   Credential.updateOne({username: profileToUpdate}, {username:newFullName, 
+    email:newEmail,
+    phonenumber:newPhoneNumber,
+    imgURL:newimgURL,
+    address:newAddress,
+    city:newCity,
+    state:newState,
+    zipcode:newZipcode,
+    about:newAbout
+  }, function(err,updatedData){
+    if(err){
+      console.log(":/")
+    }
+    else
+    {
+      console.log("Edited profile of "+profileToUpdate);
+      Credential.find({username:newFullName},function(err,foundItems){
+        if(!err){
+          newUsers=foundItems;
+          //console.log(newUsers);
+        //.log(updatedData);
+      res.redirect("/dashboard");
+
+        }
+
+      });
+      
+    }
+
+   })
+    
+
+
   })
-
-
-
-
-
 
 
 
