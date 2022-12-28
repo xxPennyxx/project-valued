@@ -10,13 +10,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 
 let newUsers=[];
 let projectList=[];
-
+let currentProject="";
 let app=express();
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"))
 
 
+const taskSchema={
+  taskName:String
+}
 
 const projectSchema={
   projectName:String,
@@ -26,8 +29,11 @@ const projectSchema={
   deadline:String,
   courseCode:String,
   mentor: String,
+  progress:Number,
+  tasks:[taskSchema]
 
 }
+
 const credsSchema = {
   username: String,
   email:String,
@@ -46,6 +52,8 @@ const credsSchema = {
 
 const Credential = mongoose.model("Credential", credsSchema);
 const Project=mongoose.model("Project",projectSchema)
+const Task=mongoose.model("Task",taskSchema)
+
 
 
 app.get("/",function(req,res){
@@ -63,7 +71,7 @@ app.get("/",function(req,res){
  
 
   app.get("/editprofile",function(req,res){
-    console.log(newUsers);
+    //console.log(newUsers);
 
     res.render("editprofile",{newUsers1:newUsers});
   });
@@ -86,7 +94,7 @@ app.get("/",function(req,res){
 
     if(foundItems.length===0){
       profile.save();
-      console.log(profile.username+" is a new user!");
+      //console.log(profile.username+" is a new user!");
       res.redirect("/login");
 
 
@@ -103,11 +111,7 @@ app.get("/",function(req,res){
    });
 
 
-   app.get("/dashboard",function(req,res){
-    res.render("dashboard",{newUsers1:newUsers,projectList1:projectList})
-
-
-  });
+  
 
   app.post("/login",function(req,res){
 
@@ -125,6 +129,8 @@ app.get("/",function(req,res){
       else
       {
         newUsers=foundItems;
+        //console.log(foundItems[0].projects);
+        projectList=foundItems[0].projects;
         res.redirect("/dashboard");
         //console.log(foundItems[foundItems.length-1].username+" is SUS!")
       }
@@ -135,7 +141,11 @@ app.get("/",function(req,res){
 
    
  
-
+    app.get("/dashboard",function(req,res){
+      res.render("dashboard",{newUsers1:newUsers,projectList1:projectList})
+  
+  
+    });
 
 
 
@@ -165,11 +175,11 @@ app.get("/",function(req,res){
     about:newAbout
   }, function(err,updatedData){
     if(err){
-      console.log(":/")
+      //console.log(":/")
     }
     else
     {
-      console.log("Edited profile of "+profileToUpdate);
+      //console.log("Edited profile of "+profileToUpdate);
       Credential.find({username:newFullName},function(err,foundItems){
         if(!err){
           newUsers=foundItems;
@@ -189,8 +199,9 @@ app.get("/",function(req,res){
   })
 
   app.get("/addproject",function(req,res){
-    res.render("add_proj",{newUsers1:newUsers})
+    res.render("add_proj",{newUsers1:newUsers});
   })
+
 
   app.post("/addproject",function(req,res){
 
@@ -200,7 +211,9 @@ app.get("/",function(req,res){
     const date=req.body.date;
     const courseMentor=req.body.mentor;
     const course=req.body.course;
-    const projCode=Math.floor(Math.random())*10000;
+    const projCode=Math.floor(Math.random()*10000);
+    const projectOwner=req.body.add;
+    var currProgress=1;
     const newProject=new Project({
       projectName:projName,
       description:desc,
@@ -208,17 +221,64 @@ app.get("/",function(req,res){
       technologies:tech,
       deadline:date,
       courseCode:course,
-      mentor:courseMentor
+      mentor:courseMentor,
+      progress:currProgress,
+      tasks:[]//whenever we're creating a new project, progress gets init'd to 0 and tasks empty
     });
-    newProject.save();
-    console.log("Added new project to user "+newUsers[0].username+"!")
-    //console.log(newProject);
-    projectList.push(newProject);
-    //console.log(projectList);
-    res.redirect("/dashboard")
+    newProject.save();//add that to project pool
 
+
+
+
+    Credential.findOne({username:projectOwner},function(err,foundItems){
+
+      if(!err){
+        projectList=foundItems.projects;
+        //console.log(projectList);
+      }
+    })
+    projectList.push(newProject);
+    //now add that to the current user's project list
+    Credential.updateOne({username:projectOwner},{projects:projectList},function(err,updatedData){
+      if(!err){
+        projectList=updatedData.projects;
+
+            }
+    
+          });
+
+
+
+          Credential.findOne({username:projectOwner},function(err,foundItems){
+
+            if(!err){
+              projectList=foundItems.projects;
+              console.log(projectList);
+              res.redirect("/dashboard");
+
+            }
+          })
+      });
+
+
+
+      app.get("/projects/:projectId",function(req,res){
+
+        const requestedId=req.params.projectId;
+      
+        Project.findOne({_id:requestedId},function(err,foundProject){
+          if(!(err)){
+            //console.log(foundProject);
+            console.log(foundProject.progress);
+            currentProject=requestedId;
+            res.render("project",{ foundProject1:foundProject, newUsers1:newUsers });
+            
+          }
+        })
+      
+      
+        })
   
-  })
   app.listen(3000, function() {
      console.log("Project management made easier @  http://localhost:3000/");
      });
