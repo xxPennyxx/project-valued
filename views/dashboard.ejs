@@ -26,95 +26,43 @@
 <hr>
 
 
-
-
-
+<% if(projectList1.length!=0) { %>
 
 <div class="w3-container">
   <h1 style="font-size:2rem">Current Projects</h1>
-
   <ul class="w3-ul w3-card-4 w3-white">
-    <li class="w3-padding-16">
-      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-      <span class="w3-xlarge">Voice Recognition</span><br>
-      <span class="w3-large">Course code: 19CSE305</span>
+
+
+<% projectList1.forEach(function(i){ %>
+
+  <li class="w3-padding-16">
+    <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
+    <span class="w3-xlarge"><%=i.projectName%></span><br>
+    <span class="w3-large">Course code: <%=i.courseCode%></span>
+    <br>
+    <div class="w3-grey" style="width:50%; margin:auto;">
+      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">25%</div>
+    </div>
+    <br>
+    <p>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+        View details
+      </a>
+      
+    </p>
+    <div class="collapse" id="collapseExample1">
+      <div class="card card-body" style="width:75%; margin:auto;">
+        <%=i.description%>
+        <br> <br> <a class="btn btn-success" style="width:40%; margin:auto;" href="v1.html"> Visit project </a>
       <br>
-      <div class="w3-grey" style="width:50%; margin:auto;">
-        <div class="w3-container w3-center w3-padding w3-green" style="width:25%">25%</div>
       </div>
-      <br>
-      <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
-          View details
-        </a>
-        
-      </p>
-      <div class="collapse" id="collapseExample1">
-        <div class="card card-body" style="width:75%; margin:auto;">
-          It is another advanced-level ML project where you have to deal mostly with audio data.
-          Speech emotion recognition attempts to identify and interpret user emotions and deduce the emotional state from speech. 
-          To train such an algorithm, you have to use most of the training data as audio data. This system will take user speech as input. 
-          <br> <br> <a class="btn btn-success" style="width:40%; margin:auto;" href="v1.html"> Visit project </a>
-        <br>
-        </div>
-      </div>
+    </div>
 
 
 
-    </li>
-    <li class="w3-padding-16" >
-      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-      <span class="w3-xlarge">Email Spam Recognition</span><br>
-      <span class="w3-large">Course code: 19CSE305</span>
-      <br>
-      <div class="w3-grey" style="margin:auto; width:50%">
-        <div class="w3-container w3-center w3-padding w3-orange" style="width:50%; ">50%</div>
-      </div><br>
-      <p>
-        <a  class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-          View details
-        </a>
-        
-      </p>
-      <div class="collapse" id="collapseExample2">
-        <div class="card card-body" style="width:75%; margin:auto;">
-          Mining text is one of the popular computation techniques widely applied in applications like text summarization, topic classification, machine translation, 
-                  sentiment analysis, etc. Modern cybersecurity systems are utilizing machine learning methods a lot.
-                   Spam filtering also leverages text mining and document classification to segregate legitimate mails and spam emails. <br>
-          <br>
-                   <a class="btn btn-success"  style="width:40%; margin:auto;" href="v.html"> Visit project </a>
-        
-        </div>
-      </div>
-    </li>
-    <li class="w3-padding-16">
-      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-      <span class="w3-xlarge">Recommendation system</span><br>
-      <span class="w3-large">Course code: 19CSE305</span>
-      <br>
-      <div class="w3-grey" style="margin:auto; width:50%">
-        <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
-      </div><br>
-      <p>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-          View details
-        </a>
-        
-      </p>
-      <div class="collapse" id="collapseExample3" >
-        <div class="card card-body" style="width:75%; margin:auto;">
-          Have you ever seen movies or web series on online streaming platforms? Once you watch one or two of them, 
-          you will notice that apps like Netflix and Amazon Prime recommend new web series and movies. 
-          It is because these apps render machine learning models that try to understand the customer's taste.  
-          All modern apps come with a recommendation engine that suggests users for more engagement.   <br> <br>
-          
-          <a class="btn btn-success" style="width:40%; margin:auto;" href="v2.html"> Visit project </a>
-        <br>
-        </div>
-      </div>
-    </li>
+  </li>
 
-
+  <% }) %>
     <li class="w3-padding-16" style="background-color:#ffadc6">
       <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
       <span class="w3-xxlarge">Add Project</span><br>
@@ -130,6 +78,35 @@
     </li>
   </ul>
 </div>
+
+
+<% } else { %>
+
+  <div class="w3-container">
+    <ul class="w3-ul w3-card-4 w3-white">
+
+    <li class="w3-padding-16" style="background-color:#ffadc6">
+      <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
+      <span class="w3-xxlarge">Add Project</span><br>
+      <span class="w3-large">Click the button below to add a project.</span>
+      <br>
+      <p>
+        <a class="btn btn-success" role="button" href="/addproject">
+          Add project
+        </a>
+        
+      </p>
+      
+    </li>
+  </ul>
+</div>
+
+
+<%}%>
+
+
+
+
 
 <hr>
 

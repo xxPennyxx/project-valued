@@ -1,0 +1,93 @@
+<%- include ("partials/header") -%>
+
+
+
+ 
+    <div style="backdrop-filter: blur(8px);; background-color:#f5f6fa;margin: 5%;">
+        <div class="card h-100" >
+            <form method="POST" action="/addproject">
+                <div class="card-body" >
+                    <div >
+                        <h6 class="mb-2 text-primary">Add Project</h6>
+                    </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="fullName">Project Name*</label>
+                            <input type="text" class="form-control" id="projName" name="projName" placeholder="Enter project name">
+                        </div>
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="website">Project Description*</label>
+                          <input type="text" class="form-control" id="Description" name="Description" placeholder="Details about the project"
+                              style="height:100px">
+                      </div>     
+                  </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="technology">Technology to be used</label>
+                            <input type="text" class="form-control" id="tech" name="tech" placeholder="Enter technology to be used">
+                        </div>      
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="date">Deadline*</label>
+                              <input type="date" class="form-control" id="myDate" name="date"  placeholder="enter the deadline"required>
+                      </div>
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="mentor name">Mentor name</label>
+                          <input type="text" class="form-control" id="mentor" name="mentor" placeholder="Enter mentor name">
+                      </div>      
+                    </div>
+                    <div >
+                      <div class="form-group">
+                          <label for="mentor name">Course Code</label>
+                          <input type="text" class="form-control" id="course" name="course" placeholder="Enter Course Code">
+                      </div>      
+                    </div>
+                      
+                    <div class="row gutters">
+                        <div >
+                        </div>
+                        <div class="row gutters">
+                            <div >
+                                <div class="text-right">
+                                    <a href="/dashboard" class="btn btn-secondary" role="button" onclick="history.back()">Cancel</a>
+                                    <button type="submit" class="btn btn-primary"> submit </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+    
+  <!-- Footer -->
+    <footer  id="footer" style="text-align: center;">
+      <div >
+        <br>
+        <i class="social-icon  fab fa-facebook-f"></i>
+        <i class="social-icon  fab fa-twitter"></i>
+        <i class="social-icon  fab fa-instagram"></i>
+        <i class="social-icon  fas fa-envelope"></i>
+        <p>© Copyright 2022 ProjectValued</p>
+        <br>
+      </div>
+      </footer>  
+
+  <!-- End page content -->
+</div>
+
+
+
+
+</body>
+<link rel="stylesheet" href="public/styles1.css">
+
+</html>

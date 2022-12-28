@@ -9,7 +9,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 
 
 let newUsers=[];
-let loggedInUsers=[];
+let projectList=[];
 
 let app=express();
 app.set('view engine','ejs')
@@ -18,6 +18,16 @@ app.use(express.static("public"))
 
 
 
+const projectSchema={
+  projectName:String,
+  description:String,
+  code:Number,
+  technologies: String,
+  deadline:String,
+  courseCode:String,
+  mentor: String,
+
+}
 const credsSchema = {
   username: String,
   email:String,
@@ -29,11 +39,13 @@ const credsSchema = {
   city:String,
   state:String,
   zipcode: Number,
-  about: String
+  about: String,
+  projects:[projectSchema]
 };
 
-const Credential = mongoose.model("Credential", credsSchema);
 
+const Credential = mongoose.model("Credential", credsSchema);
+const Project=mongoose.model("Project",projectSchema)
 
 
 app.get("/",function(req,res){
@@ -92,7 +104,7 @@ app.get("/",function(req,res){
 
 
    app.get("/dashboard",function(req,res){
-    res.render("dashboard",{newUsers1:newUsers})
+    res.render("dashboard",{newUsers1:newUsers,projectList1:projectList})
 
 
   });
@@ -172,13 +184,41 @@ app.get("/",function(req,res){
     }
 
    })
-    
-
+  
 
   })
 
+  app.get("/addproject",function(req,res){
+    res.render("add_proj",{newUsers1:newUsers})
+  })
 
+  app.post("/addproject",function(req,res){
 
+    const projName=req.body.projName;
+    const desc=req.body.Description;
+    const tech=req.body.tech;
+    const date=req.body.date;
+    const courseMentor=req.body.mentor;
+    const course=req.body.course;
+    const projCode=Math.floor(Math.random())*10000;
+    const newProject=new Project({
+      projectName:projName,
+      description:desc,
+      code:projCode,
+      technologies:tech,
+      deadline:date,
+      courseCode:course,
+      mentor:courseMentor
+    });
+    newProject.save();
+    console.log("Added new project to user "+newUsers[0].username+"!")
+    //console.log(newProject);
+    projectList.push(newProject);
+    //console.log(projectList);
+    res.redirect("/dashboard")
+
+  
+  })
   app.listen(3000, function() {
      console.log("Project management made easier @  http://localhost:3000/");
      });
