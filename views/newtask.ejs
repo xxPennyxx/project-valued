@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="images/favicon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add task</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="newtask_css.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="newtask_js.js"></script>-->
+    
+</head>
+<body style="backdrop-filter: blur(8px);; background-color:#f5f6fa;margin: 5%;">
+    <div >
+        <div class="card h-100" >
+            <form method="POST" name="task" action="/addtask">
+                <div class="card-body" >
+                    <div >
+                        <h6 class="mb-2 text-primary">Add Task</h6>
+                    </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="fullName">Task Name*</label>
+                            <input type="text" class="form-control" id="taskName" name="taskName" placeholder="Enter task name">
+                        </div>
+                    </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="eMail">Assigning To*</label>
+                            <input type="text" class="form-control" id="assigned_name" name="assigned_name" placeholder="Enter name to assign">
+                        </div>      
+                    </div>
+                    <div >
+                        <div class="form-group">
+                            <label for="website">Task Description*</label>
+                            <input type="text" class="form-control" id="Description" name="Description" placeholder="Details about the task"
+                                style="height:100px">
+                        </div>
+                        
+                    </div>
+                    <div class="row gutters">
+                        <div >
+                        </div>
+                        <div class="row gutters">
+                            <div >
+                                <div class="text-right">
+                                    <a href="/tasklist" class="btn btn-secondary" role="button">Cancel</a>
+                                    <button type="submit" name="addtask" value="<%=foundProject1._id%>" class="btn btn-primary"> submit </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

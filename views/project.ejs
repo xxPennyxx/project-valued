@@ -23,11 +23,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 }
 
 </style>
-<script>
-  function myFunction() {
-    alert("Cant add here, Add in dashboard");
-  }
-  </script>
+
 </head>
 <body class="w3-light-grey">
     <!-- Top container -->
@@ -60,7 +56,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
           </div>
           <div class="w3-bar-block" >
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">   X   Close Menu</a>
-            <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+            <a href="" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
             <a href="/dashboard" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
         
             <a href="/editprofile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
@@ -87,7 +83,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
             </div>
             <div class="w3-bar-block" >
               <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">   X   Close Menu</a>
-              <a onclick="myFunction()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+              <a href="/projects/<%=foundProject1._id%>/addtask" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
               <a href="/dashboard" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
           
               <a href="/editprofile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i>   Profile</a>
@@ -156,45 +152,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       </a>
               <hr class="hr">
             <!--chat box -->
-        <table class="w3-table w3-striped ">
-            <tr>
-              <td colspan="3"><h2 style="text-align: center; margin-left: 0%; margin-right: 0%;" class=" w3-blue"><b><a href="#" style="text-decoration: none;">CHAT BOX</a></b></h2></td>
-            </tr>
-            <tr class="w3-white">
-              <td><i class="fa fa-user w3-text-blue w3-large w3-white"></i></td>
-              <td >hey guys can i ask a doubt?</td>
-              <td><i>user1</i></td><br>
-            </tr>
-            <tr class="w3-light-grey">
-              <td><i class="fa fa-user w3-text-blue w3-large w3-light-grey"></i></td>
-              <td >hey u can ask</td>
-              <td><i>user2</i></td><br>
-            </tr>
-            <tr class="w3-white">
-              <td><i class="fa fa-user w3-text-blue w3-large w3-white"></i></td>
-              <td >whats exactly should be there in home page</td>
-              <td><i>user1</i></td>
-            </tr>
-            <tr class="w3-light-grey">
-                <td><i class="fa fa-user w3-text-blue w3-large w3-light-grey"></i></td>
-                <td >you can include info about our project</td>
-                <td><i>user3</i></td>
-              </tr>
-            <tr class="w3-white">
-              <form action="#">
-                <tr>
-                  <td colspan="2"><input type="text" id="fname" name="firstname" placeholder="enter message " class="input"></td>
-                  <td><input type="submit" value="Submit" class="submitbtn"></td>
-                 </tr>
-                </form>
-            </tr>
-        </table>
+        
       </div>
       <!--page content-->
       <div class="w3-twothird">
           <p style=" text-align: center;" class="cont2">
         <SPAN style="font-size: xx-large;"><%=foundProject1.projectName%></SPAN> 
-            <span style="margin-left:10px ; font-size: 16px; font-weight: normal; color:#888 ;">#1456</span> <br><br>
+            <span style="margin-left:10px ; font-size: 16px; font-weight: normal; color:#888 ;">#<%=foundProject1.code%></span> <br><br>
           <span >
             <%=foundProject1.description%>
           </span>
@@ -231,54 +195,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
     </div>
   </div>
 <!--team members cards-->
-  <h1 style="text-align: center;"> TEAM MEMBERS</h1>
-  <ul class="cards">
-    <li>
-      <a href="" class="card">
-        <img src="/images/avathar2.jpg" class="card__image" alt="" />
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-
-            <div class="card__header-text">
-              <h3 class="card__title">Saanvi Bhansali</h3>            
-            </div>
-          </div>
-          <p class="card__description"> email: saanvi@gmail.com <br>projects done: 5<br>tasks completed: 20 </p>
-        </div>
-      </a>      
-    </li>
-    <li>
-      <a href="" class="card">
-        <img src="/images/avathar3.webp" class="card__image" alt="" />
-        <div class="card__overlay">        
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
-            
-            <div class="card__header-text">
-              <h3 class="card__title">Zeke Jackson</h3>
-            </div>
-          </div>
-          <p class="card__description">email: zeke@gmail.com <br> projects done: 3<br> tasks completed: 15</p>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="" class="card">
-        <img src="/images/avathar1.webp" class="card__image" alt="" />
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-            
-            <div class="card__header-text">
-              <h3 class="card__title">Mickella Stone</h3>      
-            </div>
-          </div>
-          <p class="card__description">email: mick@gmail.com <br>projects done: 9<br> tasks completed: 23</p>
-        </div>
-      </a>
-    </li>   
-  </ul>
+  
 </div>
               
 </div>

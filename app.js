@@ -11,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 let newUsers=[];
 let projectList=[];
 let currentProject="";
+let currTasks=[];
 let app=express();
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}));
@@ -18,7 +19,9 @@ app.use(express.static("public"))
 
 
 const taskSchema={
-  taskName:String
+  taskName:String,
+  taskAssignedTo: String,
+  taskDesc:String
 }
 
 const projectSchema={
@@ -241,7 +244,6 @@ app.get("/",function(req,res){
     //now add that to the current user's project list
     Credential.updateOne({username:projectOwner},{projects:projectList},function(err,updatedData){
       if(!err){
-        projectList=updatedData.projects;
 
             }
     
@@ -269,7 +271,6 @@ app.get("/",function(req,res){
         Project.findOne({_id:requestedId},function(err,foundProject){
           if(!(err)){
             //console.log(foundProject);
-            console.log(foundProject.progress);
             currentProject=requestedId;
             res.render("project",{ foundProject1:foundProject, newUsers1:newUsers });
             
@@ -278,6 +279,65 @@ app.get("/",function(req,res){
       
       
         })
+
+
+      app.get("/projects/:projectId/addtask",function(req,res){
+
+       let currentProject=req.params.projectId;
+      
+        res.redirect("/addtask")
+
+
+
+      })
+
+      app.get("/addtask",function(req,res){
+
+
+        Project.findOne({_id:currentProject},function(err,foundProject){
+          if(!(err)){
+            //console.log(foundProject);
+            res.render("newtask",{ foundProject1:foundProject, newUsers1:newUsers });
+            
+          }
+        })
+
+      })
+
+      app.post("/addtask",function(req,res){
+        const projectId=req.body.addtask;
+
+        const taskname=req.body.taskName;
+        const assignedTo=req.body.assigned_name;
+        const desc=req.body.Description;
+
+        const newTask=new Task({
+          taskName:taskname,
+          taskAssignedTo: assignedTo,
+          taskDesc:desc
+
+        });
+
+
+        newTask.save();//VERY IMPORTANT!!!!!!!!!!!!
+        
+
+        Project.findOne({_id:projectId},function(err,foundProject){
+
+          if(!err)
+          {
+            console.log(foundProject);
+            foundProject.tasks.push(newTask);
+            foundProject.save();
+            res.redirect("/dashboard");
+
+          }
+
+
+        })
+
+
+      })
   
   app.listen(3000, function() {
      console.log("Project management made easier @  http://localhost:3000/");
