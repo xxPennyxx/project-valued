@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tasklist</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/yash.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="/tasklist_js.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
+*{
+    font-size: 1.25rem;
+}
+</style>
+
+</head>
+<body class="w3-light-grey" onload='checkboxes()'>
+
+<!-- Top container -->
+<div class="w3-bar w3-top colored-section w3-large" style="z-index:4;border: ;">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <a href="/dashboard" class="w3-bar-item w3-left" style="color: white;">ProjectValued</a>
+  
+  <span class="w3-bar-item w3-right "> Search </span>
+</div>
+
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="/<%=newUsers1[0].imgURL %>" class="w3-circle " style="width:46px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong><%=newUsers1[0].username %></strong></span><br>
+     
+    </div>
+  </div>
+  <hr>
+
+  <div class="w3-bar-block">
+
+    <a href="/addtask" class="w3-bar-item w3-button w3-padding"><i class="fa fa-check fa-fw"></i>  Tasks</a>
+    <a onclick="myFunction()" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Join Project</a>
+      <a href="/editprofile" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user"></i> Profile</a><br><br><br><br><br><br><br><br><br><br>
+      <a href="/" class="w3-bar-item w3-button w3-padding"><i class="fas fa-arrow-left"></i> Log Out</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+  
+
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h2><%=foundProject1.projectName %><span style="margin-left:10px;font-size:16px;font-weight:normal;color:#888">#<%=foundProject1.code %></span></h2>
+    
+  </header>
+
+<br>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="	fa fa-percent w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><div id="try4"></div></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>PROGRESS %</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa w3-xxxlarge fa-check"></i></div>
+        <div class="w3-right">
+          <h3><div id="try1" onloadeddata=""></div></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>TASKS COMPLETED</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="	fa fa-question w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><div id="try3"></div></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>TASKS INCOMPLETED</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="	fa fa-list-ol w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><div id="try2"></div></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>NUMBER OF TASKS</h4>
+      </div>
+    </div>
+  </div>
+<br>
+
+
+
+
+
+
+
+
+  <div class="row d-flex" style="margin: 2% 0%;">
+    <div class="col">
+      <div class="card-hover-shadow-2x mb-3 card">
+        <div class="card-header-tab card-header d-flex">
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal p-2"><i
+                class="fa fa-tasks"></i>&nbsp;Task List
+            </div>
+            <div class="d-block text-right ml-auto p-2" style="text-align: right;">
+               <!-- <button class="mr-2 btn btn-link btn-sm" onclick="selectall()">Cancel</button> -->
+              <a href="/addtask" class="btn btn-primary" role="button">Add Task</a>
+            </div>
+        </div>
+
+        <div ng-app="">
+            <!-- <div class="scroll-area-sm"></div> -->
+            <perfect-scrollbar class="ps-show-limits">
+              <div style="position: static;" class="ps ps--active-y">
+                <div class="ps-content">
+                  <form action="#" name="prog">
+                  <ul class=" list-group list-group-flush">
+
+
+                    <!-- Your turn: use the forEach method to display each task and their description.-->
+
+                    <%foundProject1.tasks.forEach(function(i){ %>
+
+        <li class="list-group-item" id = "selectNow6">
+            <div class="todo-indicator bg-warning"></div>
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-2">
+                  <div class="custom-checkbox custom-control">
+                    <input class="custom-control-input"
+                      id="exampleCustomCheckbox<%= i._id %>" type="checkbox" onClick="checkboxes()"><label class="custom-control-label"
+                      for="exampleCustomCheckbox<%= i._id %>" name="box1" >&nbsp;</label>
+                    </div>
+                </div>
+                <div class="widget-content-left">
+                  <div class="widget-heading"><%= i.taskName %>
+                  </div>
+                  <div class="widget-subheading"><i><%= i.taskAssignedTo %></i></div>
+                </div>
+              <div class="widget-content-right">
+                <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample<%= i._id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <i class="fa fa-angle-down"></i></button>
+                  <button onclick = "remove5()" class="border-0 btn-transition btn btn-outline-danger">
+                 <i class="fa fa-trash"></i>
+                </button>
+                
+              </div>
+              </div>
+            </div>
+            
+            <div class="collapse" id="collapseExample<%= i._id %>">
+              <div class="card card-body" style="width:75%; margin:auto;">
+                <%= i.taskDesc %>
+              <br>
+              </div>
+            </div>
+          </li>
+        
+        <% }) %>
+        
+        
+        
+        
+        
+        
+        
+        </ul></form></div></div></perfect-scrollbar></div></div></div></div></div>
+
+
+
+        </div></div></div></div>
+
+
+    
+        <%- include ("partials/footer") -%>

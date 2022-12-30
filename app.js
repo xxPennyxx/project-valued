@@ -338,6 +338,25 @@ app.get("/",function(req,res){
 
 
       })
+
+
+
+      app.get("/projects/:projectId/tasklist",function(req,res){
+
+        let currentProject=req.params.projectId;
+
+        Project.findOne({_id:currentProject},function(err,foundProject){
+          if(!(err)){
+            //console.log(foundProject);
+            res.render("tasklist",{ foundProject1:foundProject, newUsers1:newUsers });
+            
+          }
+        })
+       
+ 
+ 
+ 
+       })
   
   app.listen(3000, function() {
      console.log("Project management made easier @  http://localhost:3000/");
