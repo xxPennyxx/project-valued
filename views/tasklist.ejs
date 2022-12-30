@@ -83,7 +83,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="	fa fa-percent w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try4"></div></h3>
+          <h3><div id="try4"><%=foundProject1.completedTasks.length / foundProject1.tasks.length * 100 %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>PROGRESS %</h4>
@@ -93,7 +93,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa w3-xxxlarge fa-check"></i></div>
         <div class="w3-right">
-          <h3><div id="try1" onloadeddata=""></div></h3>
+          <h3><div id="try1" onloadeddata=""><%=foundProject1.completedTasks.length %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>TASKS COMPLETED</h4>
@@ -103,7 +103,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="	fa fa-question w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try3"></div></h3>
+          <h3><div id="try3"><%= foundProject1.tasks.length - foundProject1.completedTasks.length %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>TASKS INCOMPLETED</h4>
@@ -113,7 +113,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="	fa fa-list-ol w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try2"></div></h3>
+          <h3><div id="try2"><%=foundProject1.tasks.length %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>NUMBER OF TASKS</h4>
@@ -144,50 +144,58 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
         <div ng-app="">
             <!-- <div class="scroll-area-sm"></div> -->
-            <perfect-scrollbar class="ps-show-limits">
               <div style="position: static;" class="ps ps--active-y">
                 <div class="ps-content">
-                  <form action="#" name="prog">
                   <ul class=" list-group list-group-flush">
 
 
                     <!-- Your turn: use the forEach method to display each task and their description.-->
 
-                    <%foundProject1.tasks.forEach(function(i){ %>
+                    <% foundProject1.tasks.forEach(function(i){ %>
 
-        <li class="list-group-item" id = "selectNow6">
+        <li class="list-group-item">
+
+
+
+
+            <form action="/completed" method="post">
+
             <div class="todo-indicator bg-warning"></div>
             <div class="widget-content p-0">
               <div class="widget-content-wrapper">
                 <div class="widget-content-left mr-2">
                   <div class="custom-checkbox custom-control">
-                    <input class="custom-control-input"
-                      id="exampleCustomCheckbox<%= i._id %>" type="checkbox" onClick="checkboxes()"><label class="custom-control-label"
+                    <input class="custom-control-input" name="completedTask"
+                      id="exampleCustomCheckbox<%= i._id %>" onchange="document.getElementById('<%=i._id %>').classList.toggle('checked'); this.form.submit()" value="<%=i._id%>" type="checkbox"><label class="custom-control-label"
                       for="exampleCustomCheckbox<%= i._id %>" name="box1" >&nbsp;</label>
                     </div>
                 </div>
                 <div class="widget-content-left">
-                  <div class="widget-heading"><%= i.taskName %>
+                  <div class="widget-heading" id="<%= i._id %>"><%= i.taskName %>
                   </div>
                   <div class="widget-subheading"><i><%= i.taskAssignedTo %></i></div>
                 </div>
               <div class="widget-content-right">
                 <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample<%= i._id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                   <i class="fa fa-angle-down"></i></button>
-                  <button onclick = "remove5()" class="border-0 btn-transition btn btn-outline-danger">
+                  <input type="hidden" name="projectName" value="<%=foundProject1._id%>">
+                  <button type="submit" name="delete" value="<%=i._id%>" class="border-0 btn-transition btn btn-outline-danger">
                  <i class="fa fa-trash"></i>
                 </button>
                 
               </div>
               </div>
-            </div>
             
-            <div class="collapse" id="collapseExample<%= i._id %>">
+            <div class="collapse" id="collapseExample<%=i._id %>">
               <div class="card card-body" style="width:75%; margin:auto;">
                 <%= i.taskDesc %>
               <br>
               </div>
             </div>
+
+            </div>
+            </form>
+
           </li>
         
         <% }) %>
@@ -198,7 +206,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         
         
         
-        </ul></form></div></div></perfect-scrollbar></div></div></div></div></div>
+        </ul></form></div></div></div></div></div></div></div>
 
 
 

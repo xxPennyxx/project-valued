@@ -241,3 +241,6 @@ i {
 
 
 
+.checked{
+    text-decoration: line-through;
+}

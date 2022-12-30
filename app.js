@@ -11,7 +11,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 let newUsers=[];
 let projectList=[];
 let currentProject="";
+let currTask="";
 let currTasks=[];
+let checkedTasks=[];
 let app=express();
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}));
@@ -33,7 +35,8 @@ const projectSchema={
   courseCode:String,
   mentor: String,
   progress:Number,
-  tasks:[taskSchema]
+  tasks:[taskSchema],
+  completedTasks:[taskSchema]
 
 }
 
@@ -329,7 +332,7 @@ app.get("/",function(req,res){
             console.log(foundProject);
             foundProject.tasks.push(newTask);
             foundProject.save();
-            res.redirect("/dashboard");
+            res.redirect("/projects/"+projectId+"/tasklist");
 
           }
 
@@ -352,10 +355,50 @@ app.get("/",function(req,res){
             
           }
         })
-       
+      
  
- 
- 
+       })
+
+       app.post("/completed",function(req,res){
+
+
+        const completedTask=req.body.completedTask;
+        const deletedTask=req.body.delete;
+        const projectTasksCompleted=req.body.projectName;
+        console.log("Task completed:"+completedTask);
+        /*console.log("Task deleted:"+deletedTask);
+        console.log("Current project:"+projectTasksCompleted);*/
+
+        Task.findOne({_id:completedTask},function(err,foundTask){
+          if(!err)
+          currTask=foundTask;
+          //console.log(currTask);
+        })
+
+        Project.findOne({_id:projectTasksCompleted},function(err,foundProject){
+          if(!err)
+          {
+            
+
+                foundProject.completedTasks.push(currTask);
+                foundProject.save();
+                console.log("Completed tasks:");
+                console.log(foundProject.completedTasks);
+             
+          }
+        })
+
+
+        Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {tasks: {_id: deletedTask}}}, function(err, deletedItems){
+          if (!err){
+            //console.log("Deleted task "+deletedTask);
+            res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
+
+            
+          }
+        });
+
+
        })
   
   app.listen(3000, function() {
