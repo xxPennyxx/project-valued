@@ -219,7 +219,7 @@ app.get("/",function(req,res){
     const course=req.body.course;
     const projCode=Math.floor(Math.random()*10000);
     const projectOwner=req.body.add;
-    var currProgress=1;
+    var currProgress=0;
     const newProject=new Project({
       projectName:projName,
       description:desc,
@@ -362,41 +362,45 @@ app.get("/",function(req,res){
        app.post("/completed",function(req,res){
 
 
-        const completedTask=req.body.completedTask;
         const deletedTask=req.body.delete;
         const projectTasksCompleted=req.body.projectName;
-        console.log("Task completed:"+completedTask);
-        /*console.log("Task deleted:"+deletedTask);
-        console.log("Current project:"+projectTasksCompleted);*/
+        console.log("Task completed:"+deletedTask);
+        console.log("Current project:"+projectTasksCompleted);
 
-        Task.findOne({_id:completedTask},function(err,foundTask){
+
+
+        
+        Task.findOne({_id:deletedTask},function(err,foundTask){
           if(!err)
           currTask=foundTask;
-          //console.log(currTask);
+          console.log(currTask);
         })
 
+
+        Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {tasks: {_id: deletedTask}}}, function(err, deletedItems){
+          if (!err){
+            console.log("Deleted task "+deletedItems);
+          }
+        });
+
+        
         Project.findOne({_id:projectTasksCompleted},function(err,foundProject){
           if(!err)
           {
             
 
                 foundProject.completedTasks.push(currTask);
-                foundProject.save();
+                console.log(foundProject);
                 console.log("Completed tasks:");
                 console.log(foundProject.completedTasks);
+              foundProject.progress=foundProject.completedTasks.length/(foundProject.completedTasks.length+foundProject.tasks.length)*100;
+              foundProject.save();
+              res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
+
              
           }
         })
-
-
-        Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {tasks: {_id: deletedTask}}}, function(err, deletedItems){
-          if (!err){
-            //console.log("Deleted task "+deletedTask);
-            res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
-
-            
-          }
-        });
+        
 
 
        })

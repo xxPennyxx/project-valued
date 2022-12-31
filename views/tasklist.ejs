@@ -83,7 +83,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="	fa fa-percent w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try4"><%=foundProject1.completedTasks.length / foundProject1.tasks.length * 100 %></div></h3>
+          <h3><div id="try4"><%=foundProject1.completedTasks.length / (foundProject1.tasks.length + foundProject1.completedTasks.length) * 100 %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>PROGRESS %</h4>
@@ -103,7 +103,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="	fa fa-question w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try3"><%= foundProject1.tasks.length - foundProject1.completedTasks.length %></div></h3>
+          <h3><div id="try3"><%= foundProject1.tasks.length %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>TASKS INCOMPLETED</h4>
@@ -113,7 +113,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="	fa fa-list-ol w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3><div id="try2"><%=foundProject1.tasks.length %></div></h3>
+          <h3><div id="try2"><%=foundProject1.tasks.length + foundProject1.completedTasks.length %></div></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>NUMBER OF TASKS</h4>
@@ -165,13 +165,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
               <div class="widget-content-wrapper">
                 <div class="widget-content-left mr-2">
                   <div class="custom-checkbox custom-control">
-                    <input class="custom-control-input" name="completedTask"
-                      id="exampleCustomCheckbox<%= i._id %>" onchange="document.getElementById('<%=i._id %>').classList.toggle('checked'); this.form.submit()" value="<%=i._id%>" type="checkbox"><label class="custom-control-label"
-                      for="exampleCustomCheckbox<%= i._id %>" name="box1" >&nbsp;</label>
+                    
                     </div>
                 </div>
                 <div class="widget-content-left">
-                  <div class="widget-heading" id="<%= i._id %>"><%= i.taskName %>
+                  <div class="widget-heading"><%= i.taskName %>
                   </div>
                   <div class="widget-subheading"><i><%= i.taskAssignedTo %></i></div>
                 </div>
@@ -180,7 +178,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                   <i class="fa fa-angle-down"></i></button>
                   <input type="hidden" name="projectName" value="<%=foundProject1._id%>">
                   <button type="submit" name="delete" value="<%=i._id%>" class="border-0 btn-transition btn btn-outline-danger">
-                 <i class="fa fa-trash"></i>
+                 <i class="fa fa-check"></i>
                 </button>
                 
               </div>
@@ -206,11 +204,92 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         
         
         
-        </ul></form></div></div></div></div></div></div></div>
+        </ul></form></div></div></div></div></div>
 
 
 
-        </div></div></div></div>
+
+
+
+
+
+        <div class="row d-flex" style="margin: 2% 0%;">
+          <div class="col">
+            <div class="card-hover-shadow-2x mb-3 card">
+              <div class="card-header-tab card-header d-flex">
+                  <div class="card-header-title font-size-lg text-capitalize font-weight-normal p-2"><i
+                      class="fa fa-tasks"></i>&nbsp;Completed Tasks
+                  </div>
+                  <div class="d-block text-right ml-auto p-2" style="text-align: right;">
+                     <!-- <button class="mr-2 btn btn-link btn-sm" onclick="selectall()">Cancel</button> -->
+                  </div>
+              </div>
+      
+              <div ng-app="">
+                  <!-- <div class="scroll-area-sm"></div> -->
+                    <div style="position: static;" class="ps ps--active-y">
+                      <div class="ps-content">
+                        <ul class=" list-group list-group-flush">
+      
+      
+                          <!-- Your turn: use the forEach method to display each task and their description.-->
+      
+                          <% foundProject1.completedTasks.forEach(function(i){ %>
+      
+              <li class="list-group-item">
+      
+      
+      
+      
+                  <form action="/completed" method="post">
+      
+                  <div class="todo-indicator bg-warning"></div>
+                  <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                      <div class="widget-content-left mr-2">
+                        <div class="custom-checkbox custom-control">
+                          
+                          </div>
+                      </div>
+                      <div class="widget-content-left">
+                        <div class="widget-heading"><%= i.taskName %>
+                        </div>
+                        <div class="widget-subheading"><i><%= i.taskAssignedTo %></i></div>
+                      </div>
+                    <div class="widget-content-right">
+                      <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample<%= i._id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-angle-down"></i></button>
+                        <input type="hidden" name="projectName" value="<%=foundProject1._id%>">
+                      </button>
+                      
+                    </div>
+                    </div>
+                  
+                  <div class="collapse" id="collapseExample<%=i._id %>">
+                    <div class="card card-body" style="width:75%; margin:auto;">
+                      <%= i.taskDesc %>
+                    <br>
+                    </div>
+                  </div>
+      
+                  </div>
+                  </form>
+      
+                </li>
+              
+              <% }) %>
+              
+              
+              
+              
+              
+              
+              
+              </ul></form></div></div></div></div></div></div></div>
+      
+      
+      
+              </div></div></div></div>
 
 
     

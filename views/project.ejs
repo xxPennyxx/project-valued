@@ -130,7 +130,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                   a 15.9155 15.9155 0 0 1 0 31.831
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
-              <text x="18" y="20.35" class="percentage"><%=foundProject1.progress%>%</text>
+              <text x="18" y="20.35" class="percentage"><%=foundProject1.completedTasks.length / (foundProject1.tasks.length + foundProject1.completedTasks.length) * 100 %>%</text>
             </svg>
           </div>
         </div>
@@ -138,15 +138,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
         <table class="w3-table w3-striped w3-white">
                 <tr>  
                   <td>Tasks completed</td>
-                  <td><i>20</i></td>
+                  <td><i><%=foundProject1.completedTasks.length %></i></td>
                 </tr>
                 <tr>
                   <td>Tasks pending</td>
-                  <td><i>5</i></td>
+                  <td><i><%=foundProject1.tasks.length%></i></td>
                 </tr>
                 <tr>
-                  <td>Tasks initiated</td>
-                  <td><i>4</i></td>
+                  <td>Total tasks</td>
+                  <td><i><%=foundProject1.tasks.length + foundProject1.completedTasks.length %></i></td>
                 </tr>
         </table>
       </a>

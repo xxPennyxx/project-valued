@@ -11,14 +11,13 @@
         <h1 style="font-size:2rem;"  id="time"></h1> 
     </div> 
 
-    <div class="col-lg-6 col-md-12 w3-half colored-section" style="width:50%; margin:auto; padding: 2rem">
-      <h3>Today's progress</h3>
+    <div class="col-lg-6 col-md-12 w3-half" style="background-color:#ffadc6;width:50%; margin:auto; padding: 2rem">
+      <h2 class="w3-xxlarge">Your future is created by what you do today, not tomorrow.</h2>
+      <h6 class="w3-large"> Anonymous </h6>
       
-        <div class="progress" style="height: 5rem;">
-          <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-label="Example 20px high" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div><br>
+      
 
-        <a class="btn btn-success w3-large" href="/report">Generate report</a>
+        
     </div> 
 
   </div>
@@ -36,12 +35,10 @@
 
   <li class="w3-padding-16">
     <img src="" class="w3-left w3-circle w3-margin-right" style="width:35px">
-    <span class="w3-xlarge"><%=i.projectName%></span><br>
-    <span class="w3-large">Course code: <%=i.courseCode%></span>
+    <span class="w3-xxlarge"><%=i.projectName%></span><br>
+    <span class="w3-xlarge">Course code: <%=i.courseCode%></span>
     <br>
-    <div class="w3-grey" style="width:50%; margin:auto;">
-      <div class="w3-container w3-center w3-padding w3-green" style="width:0%"><%=i.progress%></div>
-    </div>
+    
     <br>
     <p>
       <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample<%=i._id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
