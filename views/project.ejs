@@ -206,6 +206,38 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
     </div>
   </div>
 <!--team members cards-->
+
+<h1 style="text-align: center;"> TEAM MEMBERS</h1>
+<ul class="cards">
+
+
+<% foundProject1.users.forEach(function(i){ %>
+
+  <li>
+    <a class="card">
+      <img src="/<%=i.imgURL%>" class="card__image" style="width:20%;" alt="" />
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+
+          <div class="card__header-text">
+            <h3 class="card__title"><%=i.name%></h3>            
+          </div>
+        </div>
+        <p class="card__description"> Email: <%=i.email%> </p>
+      </div>
+    </a>      
+  </li>
+
+
+
+<% }) %>
+
+
+
+
+
+
   
 </div>
               

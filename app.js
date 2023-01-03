@@ -26,6 +26,20 @@ const taskSchema={
   taskDesc:String
 }
 
+
+const userSchema={
+
+  name:{
+    type: String,
+   required:[true, ""]
+},
+
+email:{
+  type: String,
+ required:[true, ""]
+},
+imgURL:String}
+
 const projectSchema={
   projectName:{
     type: String,
@@ -44,7 +58,8 @@ const projectSchema={
   mentor: String,
   progress:Number,
   tasks:[taskSchema],
-  completedTasks:[taskSchema]
+  completedTasks:[taskSchema],
+  users:[userSchema]
 
 }
 
@@ -79,6 +94,8 @@ const credsSchema = {
 const Credential = mongoose.model("Credential", credsSchema);
 const Project=mongoose.model("Project",projectSchema)
 const Task=mongoose.model("Task",taskSchema)
+const User=mongoose.model("User",userSchema)
+
 
 
 
@@ -240,6 +257,18 @@ app.get("/",function(req,res){
     const projCode=Math.floor(Math.random()*10000);
     const projectOwner=req.body.add;
     var currProgress=0;
+
+
+    const newProjectUser=new User({
+      name:newUsers[0].username,
+      email:newUsers[0].email,
+      imgURL:newUsers[0].imgURL
+    })
+    newProjectUser.save();
+
+
+
+
     const newProject=new Project({
       projectName:projName,
       description:desc,
@@ -249,17 +278,19 @@ app.get("/",function(req,res){
       courseCode:course,
       mentor:courseMentor,
       progress:currProgress,
-      tasks:[]//whenever we're creating a new project, progress gets init'd to 0 and tasks empty
+      tasks:[],//whenever we're creating a new project, progress gets init'd to 0 and tasks empty
+      completedTasks:[],
+      users:[newProjectUser]
     });
     newProject.save();//add that to project pool
 
-
-
+   
 
     Credential.findOne({username:projectOwner},function(err,foundItems){
 
       if(!err){
         foundItems.projects.push(newProject);
+        //foundItems.users.push(newProjectUser);
         foundItems.save();
         //console.log(projectList);
         //res.redirect("/projects/"+newProject._id);
@@ -476,6 +507,13 @@ app.get("/",function(req,res){
 
        app.post("/joinproject",function(req,res){
         const projectToJoin=req.body.projectCode;
+
+        const newProjectUser=new User({
+          name:newUsers[0].username,
+          email:newUsers[0].email,
+          imgURL:newUsers[0].imgURL
+        })
+        newProjectUser.save();
         Project.findOne({code:projectToJoin},function(err,foundProject){
 
 
@@ -494,12 +532,20 @@ app.get("/",function(req,res){
               newUsers[0].projects.push(foundProject);
               newUsers[0].save();
               console.log("added project "+foundProject.projectName);
-              res.redirect("/dashboard");
+
+              if(foundProject.users.length<=3){
+                foundProject.users.push(newProjectUser);
+                foundProject.save();
+                res.redirect("/dashboard");
+                }
+                else{
+                  res.redirect("/dashboard");
+    
+                }
 
             }
-            else{
-              res.redirect("/dashboard")
-            }
+            
+            
 
            
           }
