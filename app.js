@@ -239,14 +239,17 @@ app.get("/",function(req,res){
     Credential.findOne({username:projectOwner},function(err,foundItems){
 
       if(!err){
-        projectList=foundItems.projects;
+        foundItems.projects.push(newProject);
+        foundItems.save();
         //console.log(projectList);
+        //res.redirect("/projects/"+newProject._id);
       }
     })
-    projectList.push(newProject);
     //now add that to the current user's project list
     Credential.updateOne({username:projectOwner},{projects:projectList},function(err,updatedData){
       if(!err){
+
+          
 
             }
     
@@ -257,8 +260,8 @@ app.get("/",function(req,res){
           Credential.findOne({username:projectOwner},function(err,foundItems){
 
             if(!err){
-              projectList=foundItems.projects;
-              console.log(projectList);
+              projectList.push(newProject);
+
               res.redirect("/dashboard");
 
             }
@@ -400,10 +403,64 @@ app.get("/",function(req,res){
              
           }
         })
-        
-
 
        })
+
+
+       app.post("/changedmymind",function(req,res){
+
+
+        const undeletedTask=req.body.back;
+        const projectTasksCompleted=req.body.projectName;
+        console.log("Task NOT completed:"+undeletedTask);
+        console.log("Current project:"+projectTasksCompleted);
+
+
+
+        
+        Task.findOne({_id:undeletedTask},function(err,foundTask){
+          if(!err)
+          currTask=foundTask;
+          console.log(currTask);
+        })
+
+
+        Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {completedTasks: {_id: undeletedTask}}}, function(err, deletedItems){
+          if (!err){
+            console.log("NOT Deleted task "+deletedItems);
+          }
+        });
+
+        
+        Project.findOne({_id:projectTasksCompleted},function(err,foundProject){
+          if(!err)
+          {
+            
+
+                foundProject.tasks.push(currTask);
+                console.log(foundProject);
+                console.log("UN-Completed tasks:");
+                console.log(foundProject.tasks);
+              foundProject.progress=foundProject.completedTasks.length/(foundProject.completedTasks.length+foundProject.tasks.length)*100;
+              foundProject.save();
+              res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
+
+             
+          }
+        })
+
+       })
+
+
+
+
+
+
+
+
+
+
+
   
   app.listen(3000, function() {
      console.log("Project management made easier @  http://localhost:3000/");
