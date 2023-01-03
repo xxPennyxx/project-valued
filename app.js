@@ -27,11 +27,21 @@ const taskSchema={
 }
 
 const projectSchema={
-  projectName:String,
+  projectName:{
+    type: String,
+   required:[true, ""],
+   unique:true
+},
   description:String,
-  code:Number,
+  code:{
+    type:Number,
+    unique:true
+  },
   technologies: String,
-  deadline:String,
+  deadline:{
+    type: Date,
+   required:[true, ""]
+},
   courseCode:String,
   mentor: String,
   progress:Number,
@@ -41,10 +51,22 @@ const projectSchema={
 }
 
 const credsSchema = {
-  username: String,
-  email:String,
-  password:String,
-  password1:String,
+  username: {
+    type: String,
+   required:[true, ""]
+},
+  email:{
+    type: String,
+   required:[true, ""]
+},
+  password:{
+    type: String,
+   required:[true, ""]
+},
+  password1:{
+    type: String,
+   required:[true, ""]
+},
   phonenumber:Number,
   imgURL:String,
   street:String,
@@ -452,6 +474,42 @@ app.get("/",function(req,res){
        })
 
 
+
+
+       app.post("/joinproject",function(req,res){
+        const projectToJoin=req.body.projectCode;
+        Project.findOne({code:projectToJoin},function(err,foundProject){
+
+
+
+          if(err){
+            console.log("Project does not exist")
+            res.redirect("/dashboard")
+          }
+              else    {
+            //console.log("In project: "+foundProject.projectName);
+            
+
+
+            if(!(foundProject in newUsers[0].projects)){
+
+              newUsers[0].projects.push(foundProject);
+              newUsers[0].save();
+              console.log("added project "+foundProject.projectName);
+              res.redirect("/dashboard");
+
+            }
+            else{
+              res.redirect("/dashboard")
+            }
+
+           
+          }
+          
+
+        })
+
+       })
 
 
 

@@ -124,12 +124,14 @@ font-size: 1.2rem;
         <h1 class="modal-title fs-5" id="exampleModalLabel">Enter code to join a project</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <form method="post" action="/joinproject">
       <div class="modal-body">
         <input type="text" name="projectCode" placeholder="eg. XXXX">
       </div>
       <div class="modal-footer">
-        <a href="" class="btn btn-danger" >OK</a>
+        <button type="submit" name="join" class="btn btn-danger" >OK</a>
       </div>
+    </form>
     </div>
   </div>
 </div>
