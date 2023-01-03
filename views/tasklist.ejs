@@ -254,9 +254,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                           </div>
                       </div>
                       <div class="widget-content-left">
-                        <div class="widget-heading"><%= i.taskName %>
+                        <div class="widget-heading"><s><%= i.taskName %></s>
                         </div>
-                        <div class="widget-subheading"><i><%= i.taskAssignedTo %></i></div>
+                        <div class="widget-subheading"><i><s><%= i.taskAssignedTo %></i></s></div>
                       </div>
                     <div class="widget-content-right">
                       <button class="border-0 btn-transition btn btn-outline-success" data-bs-toggle="collapse" href="#collapseExample<%= i._id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -268,7 +268,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
                         
                       <button type="submit" name="back" value="<%=i._id%>" class="border-0 btn-transition btn btn-outline-danger">
-                        <i class="fa fa-x"></i>
+                        <i class="fa fa-check"></i>
                       </button>
 
                     </form>
@@ -281,7 +281,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                   
                   <div class="collapse" id="collapseExample<%=i._id %>">
                     <div class="card card-body" style="width:75%; margin:auto;">
-                      <%= i.taskDesc %>
+                     <s> <%= i.taskDesc %></s>
                     <br>
                     </div>
                   </div>

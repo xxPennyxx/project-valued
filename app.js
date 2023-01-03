@@ -30,12 +30,10 @@ const projectSchema={
   projectName:{
     type: String,
    required:[true, ""],
-   unique:true
 },
   description:String,
   code:{
     type:Number,
-    unique:true
   },
   technologies: String,
   deadline:{
@@ -512,7 +510,29 @@ app.get("/",function(req,res){
        })
 
 
+       app.post("/deleteproject",function(req,res){
 
+        const p=req.body.deleteProject;
+        const owner=req.body.projectOwner;
+        Credential.findOneAndUpdate({_id: owner},{$pull: {projects: {_id: p}}},function(err,updatedData){
+          if(!err){
+            console.log("Deleted project "+p)
+           
+          }
+        })
+
+
+
+
+        Credential.findOne({_id:owner},function(err,foundItems){
+
+          if(!err){
+            projectList=foundItems.projects;
+            res.redirect("/dashboard");
+
+          }
+        })
+       })
 
 
 

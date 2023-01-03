@@ -148,6 +148,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                   <td>Total tasks</td>
                   <td><i><%=foundProject1.tasks.length + foundProject1.completedTasks.length %></i></td>
                 </tr>
+                <tr>
+                  <td>
+                    
+                    <form action="/deleteproject" method="post">
+                    <input type="hidden" name="projectOwner" value="<%=newUsers1[0]._id%>">
+                      <button type="submit" name="deleteProject" value="<%=foundProject1._id%>" class="btn btn-danger"> Delete project </button>
+                  </form>
+                  
+                  
+                  </td><td></td>
+                </tr>
         </table>
       </a>
               <hr class="hr">
@@ -204,6 +215,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
 </div>
 </div>
+
+
+
+
 <footer  id="footer" style="text-align: center;">
   <div >
     <br>
