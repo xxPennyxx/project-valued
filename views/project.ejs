@@ -130,7 +130,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
                   a 15.9155 15.9155 0 0 1 0 31.831
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
-              <text x="18" y="20.35" class="percentage"><%=foundProject1.completedTasks.length / (foundProject1.tasks.length + foundProject1.completedTasks.length) * 100 %>%</text>
+              <text x="18" y="20.35" class="percentage"><%=Math.round(foundProject1.completedTasks.length / (foundProject1.tasks.length + foundProject1.completedTasks.length) * 100) %>%</text>
             </svg>
           </div>
         </div>
@@ -168,16 +168,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
       <!--page content-->
       <div class="w3-twothird">
           <p style=" text-align: center;" class="cont2">
-        <SPAN style="font-size: xx-large;"><%=foundProject1.projectName%></SPAN> 
-            <span style="margin-left:10px ; font-size: 16px; font-weight: normal; color:#888 ;">#<%=foundProject1.code%></span> <br><br>
-          <span >
+        <SPAN style=" text-align: center; color: black; font-size:45px;"><%=foundProject1.projectName%></SPAN> 
+            <span style="margin-left:10px ; font-size: 1.5rem; font-weight: normal; color:#888 ;">#<%=foundProject1.code%></span> <br><br>
+          <span style="font-size:1.5rem;">
             <%=foundProject1.description%>
           </span>
           </p>
 
           <div class="flex-parent1">
             <div class="box123 example">
-              <h2 style="font-size: 180%">Tech used</h2>
+              <h2 style="font-size: 180%">Technologies Used</h2>
                     <p style="font-size: 140%"><%=foundProject1.technologies%></p>
             </div>
           
@@ -190,12 +190,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
           <div class="flex-parent1">
             <div class="box123">
-              <h2 style="font-size: 180%">Course code</h2>
+              <h2 style="font-size: 180%">Course Code</h2>
                   <p style="font-size: 140%"><%=foundProject1.courseCode%></p>
             </div>
           
             <div class="box123">
-              <h2 style="font-size: 180%">Mentor name</h2>
+              <h2 style="font-size: 180%">Mentor</h2>
               <p style="font-size: 140%"> <%=foundProject1.mentor%></p>
             </div>
           </div>
@@ -207,7 +207,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
   </div>
 <!--team members cards-->
 
-<h1 style="text-align: center;"> TEAM MEMBERS</h1>
+<h1 style="text-align: center; color: black; font-size: xx-large;"> TEAM MEMBERS</h1>
 <ul class="cards">
 
 
@@ -215,16 +215,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Montserrat", sans-serif}
 
   <li>
     <a class="card">
-      <img src="/<%=i.imgURL%>" class="card__image" style="width:20%;" alt="" />
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+      <img src="/<%=i.imgURL%>" class="card__image" style="width:30%; padding:6px" alt="" />
+      <div style="padding:5px">
+        <div >
 
-          <div class="card__header-text">
-            <h3 class="card__title"><%=i.name%></h3>            
+          <div >
+            <h2 class="card__title"><%=i.name%></h3>            
           </div>
         </div>
-        <p class="card__description"> Email: <%=i.email%> </p>
+        <h5> Email: <%=i.email%> </h5>
       </div>
     </a>      
   </li>

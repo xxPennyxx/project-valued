@@ -22,7 +22,7 @@
 
     <% if (newUsers1[0].about){ %>
 
-        <body ng-app="" ng-init="fname='<%=newUsers1[0].username %>';email='<%=newUsers1[0].email %>';about='<%=newUsers1[0].about %>';imgURL='<%=newUsers1[0].imgURL %>';"> 
+        <body> 
             <div class="container">
                 <div class="row gutters">
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -31,14 +31,14 @@
                         <div class="account-settings">
                             <div class="user-profile">
                                 <div class="user-avatar">
-                                    <img class="change" ng-bind="imgURL" src="{{imgURL}}" alt="Maxwell Admin">
+                                    <img class="change" ng-bind="imgURL" src="<%=newUsers1[0].imgURL %>" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">{{fname}}</h5>
-                                <h6 class="user-email">{{email}}</h6>
+                                <h5 class="user-name"><%=newUsers1[0].username %></h5>
+                                <h6 class="user-email"><%=newUsers1[0].email %></h6>
                             </div>
                             <div class="about">
                                 <h5>About</h5>
-                                <p>{{about}}</p>
+                                <p><%=newUsers1[0].about %></p>
                             </div>
                         </div>
                     </div>
@@ -248,6 +248,10 @@
                                 </div>
                                 </div>
                                 <% } %>
+
+
+
+
 
 
             <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>

@@ -390,7 +390,7 @@ app.get("/",function(req,res){
 
           if(!err)
           {
-            console.log(foundProject);
+            //console.log(foundProject);
             foundProject.tasks.push(newTask);
             foundProject.save();
             res.redirect("/projects/"+projectId+"/tasklist");
@@ -425,8 +425,8 @@ app.get("/",function(req,res){
 
         const deletedTask=req.body.delete;
         const projectTasksCompleted=req.body.projectName;
-        console.log("Task completed:"+deletedTask);
-        console.log("Current project:"+projectTasksCompleted);
+        //console.log("Task completed:"+deletedTask);
+        //console.log("Current project:"+projectTasksCompleted);
 
 
 
@@ -434,13 +434,13 @@ app.get("/",function(req,res){
         Task.findOne({_id:deletedTask},function(err,foundTask){
           if(!err)
           currTask=foundTask;
-          console.log(currTask);
+          //console.log(currTask);
         })
 
 
         Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {tasks: {_id: deletedTask}}}, function(err, deletedItems){
           if (!err){
-            console.log("Deleted task "+deletedItems);
+            //console.log("Deleted task "+deletedItems);
           }
         });
 
@@ -451,10 +451,11 @@ app.get("/",function(req,res){
             
 
                 foundProject.completedTasks.push(currTask);
-                console.log(foundProject);
-                console.log("Completed tasks:");
-                console.log(foundProject.completedTasks);
+                // console.log(foundProject);
+                // console.log("Completed tasks:");
+                // console.log(foundProject.completedTasks);
               foundProject.progress=foundProject.completedTasks.length/(foundProject.completedTasks.length+foundProject.tasks.length)*100;
+              foundProject.progress=Math.round(foundProject.progress).toFixed(2);
               foundProject.save();
               res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
 
@@ -470,8 +471,8 @@ app.get("/",function(req,res){
 
         const undeletedTask=req.body.back;
         const projectTasksCompleted=req.body.projectName;
-        console.log("Task NOT completed:"+undeletedTask);
-        console.log("Current project:"+projectTasksCompleted);
+        // console.log("Task NOT completed:"+undeletedTask);
+        // console.log("Current project:"+projectTasksCompleted);
 
 
 
@@ -479,13 +480,13 @@ app.get("/",function(req,res){
         Task.findOne({_id:undeletedTask},function(err,foundTask){
           if(!err)
           currTask=foundTask;
-          console.log(currTask);
+          //console.log(currTask);
         })
 
 
         Project.findOneAndUpdate({_id: projectTasksCompleted}, {$pull: {completedTasks: {_id: undeletedTask}}}, function(err, deletedItems){
           if (!err){
-            console.log("NOT Deleted task "+deletedItems);
+            //console.log("NOT Deleted task "+deletedItems);
           }
         });
 
@@ -496,9 +497,9 @@ app.get("/",function(req,res){
             
 
                 foundProject.tasks.push(currTask);
-                console.log(foundProject);
-                console.log("UN-Completed tasks:");
-                console.log(foundProject.tasks);
+                // console.log(foundProject);
+                // console.log("UN-Completed tasks:");
+                // console.log(foundProject.tasks);
               foundProject.progress=foundProject.completedTasks.length/(foundProject.completedTasks.length+foundProject.tasks.length)*100;
               foundProject.save();
               res.redirect("/projects/"+projectTasksCompleted+"/tasklist");
@@ -517,10 +518,10 @@ app.get("/",function(req,res){
         
         Project.findOne({code:projectToJoin},function(err,foundProject){
 
-          console.log("Project to join:"+foundProject._id);
+          //console.log("Project to join:"+foundProject._id);
 
           if(err){
-            console.log("Project does not exist")
+            //console.log("Project does not exist")
             res.redirect("/dashboard")
           }
               else    {
@@ -529,7 +530,7 @@ app.get("/",function(req,res){
 
                   var exists=false;
                   for(var j=0;j<newUsers[0].projects.length;j++){
-                    console.log(newUsers[0].projects[j]._id)
+                    //console.log(newUsers[0].projects[j]._id)
 
                     if(foundProject.projectName==newUsers[0].projects[j].projectName){
                       exists=true;
@@ -541,11 +542,11 @@ app.get("/",function(req,res){
 
                 if(exists==false){
 
-                  console.log("Project NOT exists!")
+                  //console.log("Project NOT exists!")
 
                   newUsers[0].projects.push(foundProject);
                   newUsers[0].save();
-                  console.log("added project "+foundProject.projectName);
+                  //console.log("added project "+foundProject.projectName);
 
 
                 const newProjectUser=new User({
@@ -563,10 +564,10 @@ app.get("/",function(req,res){
 
                 foundProject.users.push(newProjectUser);
                 foundProject.save();
-                res.redirect("/dashboard");
+                res.redirect("/projects/"+foundProject._id);
                 }
                 else{
-                  console.log("Project exists!")
+                  //console.log("Project exists!")
                   res.redirect("/dashboard");
     
                 }
@@ -590,7 +591,7 @@ app.get("/",function(req,res){
         const owner=req.body.projectOwner;
         Credential.findOneAndUpdate({_id: owner},{$pull: {projects: {_id: p}}},function(err,updatedData){
           if(!err){
-            console.log("Deleted project "+p)
+            //console.log("Deleted project "+p)
            
           }
         })
