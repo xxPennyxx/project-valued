@@ -48,6 +48,7 @@ const projectSchema={
   description:String,
   code:{
     type:Number,
+    required:[true, ""]
   },
   technologies: String,
   deadline:{
@@ -126,6 +127,9 @@ app.get("/",function(req,res){
     const newEmail=req.body.email;
     const newPassword=req.body.createps;
      const newPassword1=req.body.confirmps;
+     // if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailID)
+
+    if(newPassword.length>5 && newPassword1.length>5 && newPassword===newPassword1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(newEmail)){
       const profile = new Credential({
        username: newUsername,
    email:newEmail,
@@ -139,7 +143,7 @@ app.get("/",function(req,res){
       profile.save();
       //console.log(profile.username+" is a new user!");
       res.redirect("/login");
-
+      
 
     }
     else{
@@ -149,7 +153,10 @@ app.get("/",function(req,res){
    });
     
          
- 
+  }
+  else{
+    res.redirect("/signup");
+  }
       
    });
 
@@ -507,38 +514,59 @@ app.get("/",function(req,res){
 
        app.post("/joinproject",function(req,res){
         const projectToJoin=req.body.projectCode;
-
-        const newProjectUser=new User({
-          name:newUsers[0].username,
-          email:newUsers[0].email,
-          imgURL:newUsers[0].imgURL
-        })
-        newProjectUser.save();
+        
         Project.findOne({code:projectToJoin},function(err,foundProject){
 
-
+          console.log("Project to join:"+foundProject._id);
 
           if(err){
             console.log("Project does not exist")
             res.redirect("/dashboard")
           }
               else    {
+
+                if(foundProject.users.length<=5){
+
+                  var exists=false;
+                  for(var j=0;j<newUsers[0].projects.length;j++){
+                    console.log(newUsers[0].projects[j]._id)
+
+                    if(foundProject.projectName==newUsers[0].projects[j].projectName){
+                      exists=true;
+                      break;
+                    }
+                    
+                  }
+
+
+                if(exists==false){
+
+                  console.log("Project NOT exists!")
+
+                  newUsers[0].projects.push(foundProject);
+                  newUsers[0].save();
+                  console.log("added project "+foundProject.projectName);
+
+
+                const newProjectUser=new User({
+                  name:newUsers[0].username,
+                  email:newUsers[0].email,
+                  imgURL:newUsers[0].imgURL
+                })
+                newProjectUser.save();
             //console.log("In project: "+foundProject.projectName);
             
 
 
-            if(!(foundProject in newUsers[0].projects)){
 
-              newUsers[0].projects.push(foundProject);
-              newUsers[0].save();
-              console.log("added project "+foundProject.projectName);
+             
 
-              if(foundProject.users.length<=3){
                 foundProject.users.push(newProjectUser);
                 foundProject.save();
                 res.redirect("/dashboard");
                 }
                 else{
+                  console.log("Project exists!")
                   res.redirect("/dashboard");
     
                 }
