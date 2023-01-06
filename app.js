@@ -21,8 +21,14 @@ app.use(express.static("public"))
 
 
 const taskSchema={
-  taskName:String,
-  taskAssignedTo: String,
+  taskName:{
+    type: String,
+   required:[true, ""]
+},
+  taskAssignedTo: {
+    type: String,
+   required:[true, ""]
+},
   taskDesc:String
 }
 
@@ -264,6 +270,9 @@ app.get("/",function(req,res){
     const projCode=Math.floor(Math.random()*10000);
     const projectOwner=req.body.add;
     var currProgress=0;
+    let today= new Date();
+
+    if((new Date(date)>today)){
 
 
     const newProjectUser=new User({
@@ -324,6 +333,10 @@ app.get("/",function(req,res){
 
             }
           })
+        }
+        else{
+          res.redirect("/addproject");
+        }
       });
 
 
@@ -375,6 +388,8 @@ app.get("/",function(req,res){
         const assignedTo=req.body.assigned_name;
         const desc=req.body.Description;
 
+        if((taskname) && (assignedTo)){
+
         const newTask=new Task({
           taskName:taskname,
           taskAssignedTo: assignedTo,
@@ -399,6 +414,10 @@ app.get("/",function(req,res){
 
 
         })
+      }
+      else{
+        res.redirect("/addtask")
+      }
 
 
       })
