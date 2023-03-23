@@ -3,7 +3,7 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
-const md5=require('md5');
+const sha256 = require('js-sha256');
 
 mongoose.set("strictQuery", false);
 
@@ -144,8 +144,8 @@ app.get("/",function(req,res){
       const profile = new Credential({
        username: newUsername,
    email:newEmail,
-   password:md5(newPassword),
-   password1:md5(newPassword1)
+   password:sha256(newPassword),
+   password1:sha256(newPassword1)
      });
  
    var newUsers=Credential.find({email:newEmail},function(err,foundItems){
