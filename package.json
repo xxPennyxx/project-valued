@@ -18,6 +18,7 @@
   "homepage": "https://github.com/xxPennyxx/project-valued#readme",
   "dependencies": {
     "mongoose": "^6.8.1",
+    "mongoose-encryption": "^2.1.2",
     "nodemon": "^2.0.20"
   }
 }

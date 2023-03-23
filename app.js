@@ -2,6 +2,7 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
+const encrypt=require('mongoose-encryption');
 mongoose.set("strictQuery", false);
 
 
@@ -70,7 +71,7 @@ const projectSchema={
 
 }
 
-const credsSchema = {
+const credsSchema = new mongoose.Schema({
   username: {
     type: String,
    required:[true, ""]
@@ -95,13 +96,17 @@ const credsSchema = {
   zipcode: Number,
   about: String,
   projects:[projectSchema]
-};
+});
+
+const secret1="Thisisasecret";
+credsSchema.plugin(encrypt,{secret:secret1,encryptedFields:['password']});
 
 
 const Credential = mongoose.model("Credential", credsSchema);
 const Project=mongoose.model("Project",projectSchema)
 const Task=mongoose.model("Task",taskSchema)
 const User=mongoose.model("User",userSchema)
+
 
 
 
@@ -175,7 +180,7 @@ app.get("/",function(req,res){
     
     const loginEmail=req.body.email;
     const loginpwd=req.body.password;
-    var LoggedInUsers=Credential.find({email:loginEmail, password: loginpwd}, function(err,foundItems){
+    var LoggedInUsers=Credential.find({email:loginEmail}, function(err,foundItems){
       
 
       if(foundItems.length===0){  
