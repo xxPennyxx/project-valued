@@ -1,3 +1,4 @@
+require('dotenv').config();
 let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
@@ -98,8 +99,7 @@ const credsSchema = new mongoose.Schema({
   projects:[projectSchema]
 });
 
-const secret1="Thisisasecret";
-credsSchema.plugin(encrypt,{secret:secret1,encryptedFields:['password']});
+credsSchema.plugin(encrypt,{secret:process.env.SECRET,encryptedFields:['password','password1']});
 
 
 const Credential = mongoose.model("Credential", credsSchema);
