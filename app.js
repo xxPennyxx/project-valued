@@ -3,7 +3,7 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
-const sha256 = require('js-sha256');
+const NodeRSA = require('node-rsa');
 
 mongoose.set("strictQuery", false);
 
@@ -102,6 +102,10 @@ const credsSchema = new mongoose.Schema({
 
 
 
+const key = new NodeRSA({b: 512});
+
+
+
 const Credential = mongoose.model("Credential", credsSchema);
 const Project=mongoose.model("Project",projectSchema)
 const Task=mongoose.model("Task",taskSchema)
@@ -144,8 +148,10 @@ app.get("/",function(req,res){
       const profile = new Credential({
        username: newUsername,
    email:newEmail,
-   password:sha256(newPassword),
-   password1:sha256(newPassword1)
+   password: key.encrypt(newPassword, 'base64'),
+   password1: key.encrypt(newPassword1, 'base64')
+
+   
      });
  
    var newUsers=Credential.find({email:newEmail},function(err,foundItems){
@@ -192,6 +198,8 @@ app.get("/",function(req,res){
         newUsers=foundItems;
         //console.log(foundItems[0].projects);
         projectList=foundItems[0].projects;
+        console.log(loginpwd);
+        console.log(key.encrypt(loginpwd, 'base64'));
         res.redirect("/dashboard");
         //console.log(foundItems[foundItems.length-1].username+" is SUS!")
       }
