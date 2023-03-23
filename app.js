@@ -3,7 +3,8 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
-const encrypt=require('mongoose-encryption');
+const md5=require('md5');
+
 mongoose.set("strictQuery", false);
 
 
@@ -99,7 +100,6 @@ const credsSchema = new mongoose.Schema({
   projects:[projectSchema]
 });
 
-credsSchema.plugin(encrypt,{secret:process.env.SECRET,encryptedFields:['password','password1']});
 
 
 const Credential = mongoose.model("Credential", credsSchema);
@@ -144,8 +144,8 @@ app.get("/",function(req,res){
       const profile = new Credential({
        username: newUsername,
    email:newEmail,
-   password:newPassword,
-   password1:newPassword1
+   password:md5(newPassword),
+   password1:md5(newPassword1)
      });
  
    var newUsers=Credential.find({email:newEmail},function(err,foundItems){
