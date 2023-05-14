@@ -3,8 +3,9 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
-const NodeRSA = require('node-rsa');
-
+//const NodeRSA = require('node-rsa');
+const bcrypt=require("bcrypt");
+const saltRounds=10;
 mongoose.set("strictQuery", false);
 
 
@@ -102,7 +103,7 @@ const credsSchema = new mongoose.Schema({
 
 
 
-const key = new NodeRSA({b: 512});
+//const key = new NodeRSA({b: 512});
 
 
 
@@ -144,41 +145,47 @@ app.get("/",function(req,res){
      const newPassword1=req.body.confirmps;
      // if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailID)
 
-    if(newPassword.length>5 && newPassword1.length>5 && newPassword===newPassword1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(newEmail)){
-      const profile = new Credential({
-       username: newUsername,
-   email:newEmail,
-   password: key.encrypt(newPassword, 'base64'),
-   password1: key.encrypt(newPassword1, 'base64')
+    bcrypt.hash(newPassword,saltRounds,function(err,hash){
 
+
+      if(newPassword.length>5 && newPassword1.length>5 && newPassword===newPassword1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(newEmail)){
+        const profile = new Credential({
+         username: newUsername,
+     email:newEmail,
+     password: hash,
+     password1: hash
+  
+     
+       });
    
+     var newUsers=Credential.find({email:newEmail},function(err,foundItems){
+  
+      if(foundItems.length===0){
+        profile.save();
+        //console.log(profile.username+" is a new user!");
+        res.redirect("/login");
+        
+  
+      }
+      else{
+        //console.log(foundItems[0].username);
+        res.redirect("/login")
+      }
      });
- 
-   var newUsers=Credential.find({email:newEmail},function(err,foundItems){
-
-    if(foundItems.length===0){
-      profile.save();
-      //console.log(profile.username+" is a new user!");
-      res.redirect("/login");
       
-
+           
     }
     else{
-      //console.log(foundItems[0].username);
-      res.redirect("/login")
+      res.redirect("/signup");
     }
-   });
-    
-         
-  }
-  else{
-    res.redirect("/signup");
-  }
+
+
+
+      
+    })
       
    });
 
-
-  
 
   app.post("/login",function(req,res){
 
@@ -198,8 +205,8 @@ app.get("/",function(req,res){
         newUsers=foundItems;
         //console.log(foundItems[0].projects);
         projectList=foundItems[0].projects;
-        console.log(loginpwd);
-        console.log(key.encrypt(loginpwd, 'base64'));
+        //console.log(loginpwd);
+        //console.log(key.encrypt(loginpwd, 'base64'));
         res.redirect("/dashboard");
         //console.log(foundItems[foundItems.length-1].username+" is SUS!")
       }
