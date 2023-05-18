@@ -3,13 +3,13 @@ let express=require('express');
 let bodyParser=require('body-parser');
 let ejs = require("ejs");
 const mongoose=require('mongoose');
-//const NodeRSA = require('node-rsa');
-const bcrypt=require("bcrypt");
-const saltRounds=10;
+const session=require('express-session');
+const passport=require('passport');
+const passportLocalMongoose=require('passport-local-mongoose');
+
 mongoose.set("strictQuery", false);
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
 
 
 let newUsers=[];
@@ -19,9 +19,26 @@ let currTask="";
 let currTasks=[];
 let checkedTasks=[];
 let app=express();
+
+
+mongoose.connect('mongodb://127.0.0.1:27017/projectValuedDB');
+
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"))
+
+
+app.use(session({
+
+  secret:"19CSE311 Computer Security",
+  resave:false,
+  saveUninitialized:false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session())
+
+//mongoose.set("useCreateIndex",true);
 
 
 const taskSchema={
@@ -77,19 +94,19 @@ const projectSchema={
 const credsSchema = new mongoose.Schema({
   username: {
     type: String,
-   required:[true, ""]
+   //required:[true, ""]
 },
   email:{
     type: String,
-   required:[true, ""]
+   //required:[true, ""]
 },
   password:{
     type: String,
-   required:[true, ""]
+   //required:[true, ""]
 },
   password1:{
     type: String,
-   required:[true, ""]
+   //required:[true, ""]
 },
   phonenumber:Number,
   imgURL:String,
@@ -105,9 +122,14 @@ const credsSchema = new mongoose.Schema({
 
 //const key = new NodeRSA({b: 512});
 
-
+credsSchema.plugin(passportLocalMongoose);
 
 const Credential = mongoose.model("Credential", credsSchema);
+
+passport.use(Credential.createStrategy());
+passport.serializeUser(Credential.serializeUser());
+passport.deserializeUser(Credential.deserializeUser());
+
 const Project=mongoose.model("Project",projectSchema)
 const Task=mongoose.model("Task",taskSchema)
 const User=mongoose.model("User",userSchema)
@@ -139,90 +161,84 @@ app.get("/",function(req,res){
 
   app.post("/signup",function(req,res){
 
-    const newUsername=req.body.username;
-    const newEmail=req.body.email;
-    const newPassword=req.body.createps;
-     const newPassword1=req.body.confirmps;
-     // if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(emailID)
-
-    bcrypt.hash(newPassword,saltRounds,function(err,hash){
-
-
-      if(newPassword.length>5 && newPassword1.length>5 && newPassword===newPassword1 && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(newEmail)){
-        const profile = new Credential({
-         username: newUsername,
-     email:newEmail,
-     password: hash,
-     password1: hash
-  
-     
-       });
-   
-     var newUsers=Credential.find({email:newEmail},function(err,foundItems){
-  
-      if(foundItems.length===0){
-        profile.save();
-        //console.log(profile.username+" is a new user!");
-        res.redirect("/login");
-        
-  
+    Credential.register({username:req.body.email},req.body.createps,function(err,user){
+      if(err){
+      console.log(err);
+      res.redirect("/signup");
       }
       else{
-        //console.log(foundItems[0].username);
-        res.redirect("/login")
+          passport.authenticate("local")(req,res,function(){
+              res.redirect("/dashboard");
+          });
       }
-     });
-      
-           
-    }
-    else{
-      res.redirect("/signup");
-    }
-
-
-
-      
-    })
-      
+  });    
    });
+
+   
 
 
   app.post("/login",function(req,res){
 
+    const user=new Credential({
+      email:req.body.email,
+      password:req.body.password
+    });
+    req.login(user,function(err){
 
-    
-    const loginEmail=req.body.email;
-    const loginpwd=req.body.password;
-    var LoggedInUsers=Credential.find({email:loginEmail}, function(err,foundItems){
+      if(err)
+      console.log(err);
+      else{
+
+        var LoggedInUsers=Credential.findOne({email:loginEmail}, function(err,foundItems){
       
 
-      if(foundItems.length===0){  
-        //console.log("Invalid User")
-        res.redirect("/login");
-      }
-      else
-      {
-        newUsers=foundItems;
-        //console.log(foundItems[0].projects);
-        projectList=foundItems[0].projects;
-        //console.log(loginpwd);
-        //console.log(key.encrypt(loginpwd, 'base64'));
-        res.redirect("/dashboard");
-        //console.log(foundItems[foundItems.length-1].username+" is SUS!")
-      }
+          if(foundItems.length===0){  
+            res.redirect("/login");
+          }
+          else
+          {
+            newUsers=foundItems;
+            projectList=foundItems[0].projects;
+  
+          }
+    
+          }) 
+        passport.authenticate("local")(req,res,function(){
 
-      }) 
+          res.redirect("/dashboard");
+        })
+      }
+    })
 
     });
 
    
  
     app.get("/dashboard",function(req,res){
-      res.render("dashboard",{newUsers1:newUsers,projectList1:projectList})
+
+      if(req.isAuthenticated()){
+
+        
+        //res.render("dashboard",{newUsers1:newUsers,projectList1:projectList})
+        res.render("randompage");
+
+      }
+      else{
+        res.redirect("/login")
+      }
   
   
     });
 
+    app.get("/logout",function(req,res){
+
+      req.logout().then(function(err){ //req.logout(function(err))?
+
+        if(!err)
+        res.redirect("/");
+
+      });
+     })
 
 
   app.post("/editprofile",function(req,res){
